@@ -1,0 +1,19 @@
+Visualization Manager:
+  Displays:
+    - Class: rviz_default_plugins/Map
+      Name: Map
+      Topic: /map
+      Value: true
+    - Class: rviz_default_plugins/PointCloud2
+      Name: Lidar
+      Topic: /points
+      Value: true
+      Size (m): 0.02
+    - Class: rviz_default_plugins/TF
+      Name: TF
+      Value: true
+    - Class: rviz_default_plugins/RobotModel
+      Name: RobotModel
+      Value: true
+  Global Options:
+    Fixed Frame: map

@@ -1,0 +1,18 @@
+slam_toolbox:
+  ros__parameters:
+    use_sim_time: true
+    odom_frame: odom
+    map_frame: map
+    base_frame: base_link
+    scan_topic: /points
+    pointcloud_topic: /points
+    mode: mapping
+    use_pointcloud: true
+    pointcloud_min_z: 0.1
+    pointcloud_max_z: 2.0
+    voxel_filter_size: 0.1
+    map_update_interval: 1.0
+    resolution: 0.05
+    do_loop_closing: true
+    # CRITICAL: This tells SLAM to use TF
+    transform_tolerance: 1.0
