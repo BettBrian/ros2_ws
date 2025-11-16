@@ -5,9 +5,6 @@ from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument
 from launch.substitutions import LaunchConfiguration, PythonExpression
 from launch_ros.actions import Node
-
-
-# CRITICAL: Import xacro here so it's available in PythonExpression
 import xacro
 
 
@@ -67,5 +64,5 @@ def generate_launch_description():
     return LaunchDescription([
         declare_use_sim_time,
         declare_use_ros2_control,
-        rsp_node
+        rsp_node,
     ])

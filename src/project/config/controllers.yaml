@@ -1,0 +1,29 @@
+controller_manager:
+  ros__parameters:
+    # Update rate for the controller manager
+    update_rate: 100
+
+    # This controller is required to publish joint states to /tf
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+
+    # This is the main controller for your two-wheeled robot
+    diff_drive_controller:
+      type: diff_drive_controller/DiffDriveController
+      
+      # --- Joint Names ---
+      # These must match the <joint name="..."> in your URDF file
+      left_wheel_names: ["left_wheel_joint"]
+      right_wheel_names: ["right_wheel_joint"]
+
+      # --- Robot Parameters ---
+      # These MUST match the values in your URDF file
+      # wheel_separation = 2 * wheel_y_offset = 2 * (0.15 + 0.02) = 0.34
+      wheel_separation: 0.34
+      wheel_radius: 0.05 
+
+      # --- Odometry Settings ---
+      # This controller will publish your /odom topic
+      publish_rate: 50.0
+      odom_frame_id: odom
+      base_frame_id: base_link

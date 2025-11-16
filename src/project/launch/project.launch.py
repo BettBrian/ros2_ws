@@ -6,8 +6,6 @@ from launch.substitutions import LaunchConfiguration
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch_ros.actions import Node
 from ament_index_python.packages import get_package_share_directory
-from launch.event_handlers import OnProcessStart
-from launch.actions import RegisterEventHandler
 
 def generate_launch_description():
     package_name = 'project'
@@ -21,13 +19,13 @@ def generate_launch_description():
         description='Use simulation (Gazebo) clock'
     )
 
-    # 1. Robot State Publisher
     rsp = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(os.path.join(pkg_share, 'launch', 'rsp.launch.py')),
-        launch_arguments={'use_sim_time': use_sim_time}.items()
+        launch_arguments={'use_sim_time': use_sim_time,
+                          'use_ros2_control': 'false'
+                          }.items()
     )
 
-    # 2. Gazebo
     gazebo_launch = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
             os.path.join(get_package_share_directory('ros_gz_sim'), 'launch', 'gz_sim.launch.py')
@@ -35,7 +33,6 @@ def generate_launch_description():
         launch_arguments={'gz_args': f'-r -v 4 {world_path}'}.items()
     )
 
-    # 3. Spawn
     spawn_entity = Node(
         package='ros_gz_sim',
         executable='create',
@@ -43,29 +40,25 @@ def generate_launch_description():
         output='screen'
     )
 
-    # 4. Gazebo Bridge (FIXED: parameters in `parameters=`)
     gz_bridge = Node(
-    package='ros_gz_bridge',
-    executable='parameter_bridge',
-    arguments=[
-        '/scan/points@sensor_msgs/msg/PointCloud2@gz.msgs.PointCloudPacked',
-        '/odom@nav_msgs/msg/Odometry@gz.msgs.Odometry',
-        '/tf@tf2_msgs/msg/TFMessage@gz.msgs.Pose_V', 
-    ],
-    remappings=[
-        ('/scan/points', '/points'),
-        ('/odometry', '/odom'),
-        ('/tf', '/tf'),
-    ],
-    parameters=[{'use_sim_time': use_sim_time}],
-    output='screen'
-    )
-    # Delay bridge until spawn is ready
-    delay_gz_bridge = RegisterEventHandler(
-        event_handler=OnProcessStart(
-            target_action=spawn_entity,
-            on_start=[gz_bridge]
-        )
+        package='ros_gz_bridge',
+        executable='parameter_bridge',
+        arguments=[
+            '/clock@rosgraph_msgs/msg/Clock[gz.msgs.Clock',
+            '/scan/points@sensor_msgs/msg/PointCloud2[gz.msgs.PointCloudPacked',
+            '/model/quad/odometry@nav_msgs/msg/Odometry[gz.msgs.Odometry',
+            '/model/quad/tf@tf2_msgs/msg/TFMessage[gz.msgs.Pose_V',
+            '/cmd_vel@geometry_msgs/msg/Twist]gz.msgs.Twist',
+            '/world/test_industry/model/quad/joint_state@sensor_msgs/msg/JointState[gz.msgs.Model'
+        ],
+        remappings=[
+            ('/scan/points', '/points'),
+            ('/world/test_industry/model/quad/joint_state', '/joint_states'),
+            ('/model/quad/odometry', '/odom'),
+            ('/model/quad/tf', '/tf')
+        ],
+        parameters=[{'use_sim_time': use_sim_time}],
+        output='screen'
     )
 
     fix_lidar_tf = Node(
@@ -76,26 +69,18 @@ def generate_launch_description():
         '0', '0', '0',   # x y z
         '0', '0', '0',   # qx qy qz
         '1',             # qw
-        'lidar_link',    # parent
+        'odom',    # parent
         'quad/base_link/lidar'  # child
     ],
     output='screen'
     )
 
-    # 5. RTAB-Map
-    rtabmap_launch = IncludeLaunchDescription(
-    PythonLaunchDescriptionSource(
-        os.path.join(pkg_share, 'launch', 'rtab_map.launch.py')
-    ),
-    launch_arguments={'use_sim_time': use_sim_time}.items()
-)
 
     return LaunchDescription([
         declare_use_sim_time,
         rsp,
         gazebo_launch,
         spawn_entity,
-        delay_gz_bridge,
-        fix_lidar_tf,
-        rtabmap_launch
+        gz_bridge,
+        fix_lidar_tf
     ])
