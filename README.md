@@ -17,7 +17,8 @@ sudo apt install ros-jazzy-ros-gz \
 # Clone and build
 git clone https://github.com/BettBrian/ros2_ws.git
 cd ros2_ws
-source /opt/ros/jazzy/setup.bash
+
+# Build
 colcon build --symlink-install
 
 # Source
