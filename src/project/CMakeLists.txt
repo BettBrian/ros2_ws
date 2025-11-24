@@ -7,7 +7,6 @@ endif()
 
 # find dependencies
 find_package(ament_cmake REQUIRED)
-find_package(ament_cmake REQUIRED)
 find_package(ros_gz_sim REQUIRED)
 find_package(ros_gz_bridge REQUIRED)
 find_package(gz_ros2_control REQUIRED)
@@ -17,6 +16,8 @@ find_package(controller_manager REQUIRED)
 find_package(diff_drive_controller REQUIRED)
 find_package(joint_state_broadcaster REQUIRED)
 find_package(xacro REQUIRED)
+find_package(joint_trajectory_controller REQUIRED)
+find_package(forward_command_controller REQUIRED)
 find_package(robot_state_publisher REQUIRED)
 find_package(sensor_msgs REQUIRED)
 find_package(tf2 REQUIRED)
@@ -57,6 +58,14 @@ install(
   DIRECTORY config/
   DESTINATION share/${PROJECT_NAME}/config
 )
+
+#install meshes
+install(
+  DIRECTORY meshes/
+  DESTINATION share/${PROJECT_NAME}/meshes
+)
+
+
 
 
 ament_package()

@@ -1,0 +1,3023 @@
+<robot name="quadped" version="1.0">
+  <joint name="backplate_link_joint" type="fixed">
+    <origin rpy="0.00000 0.00000 0.00000" xyz="0.05020 0.17534 0.00102"/>
+    <parent link="baselink_link"/>
+    <child link="backplate_link"/>
+  </joint>
+  <joint name="blhipmotor_link_joint" type="fixed">
+    <origin rpy="0.00000 0.00000 0.00000" xyz="0.11031 0.06572 -0.00421"/>
+    <parent link="baselink_link"/>
+    <child link="blhipmotor_link"/>
+  </joint>
+  <joint name="blpart2_link_joint" type="fixed">
+    <origin rpy="0.00000 0.00000 -0.00000" xyz="0.00054 0.00325 0.00781"/>
+    <parent link="blpin1_link"/>
+    <child link="blpart2_link"/>
+  </joint>
+  <joint name="frpart8_link_joint" type="fixed">
+    <origin rpy="0.00000 0.00000 -0.00000" xyz="-0.00113 0.07209 -0.08783"/>
+    <parent link="frpin3_link"/>
+    <child link="frpart8_link"/>
+  </joint>
+  <joint name="frpin4_link_joint" type="fixed">
+    <origin rpy="0.00000 0.00000 -0.00000" xyz="-0.00080 0.08261 -0.10063"/>
+    <parent link="frpin3_link"/>
+    <child link="frpin4_link"/>
+  </joint>
+  <joint name="frpin5_link_joint" type="continuous">
+    <limit effort="100.00000" velocity="10.0"/>
+    <origin rpy="-0.00000 1.57080 0.00000" xyz="-0.00308 0.06488 -0.07191"/>
+    <parent link="frupperleg_link"/>
+    <child link="frpin5_link"/>
+    <axis xyz="0.00000 0.00000 1.00000"/>
+    <mimic joint="frpart1_link_joint" multiplier="1.0" offset="0.0"/>
+  </joint>
+  <joint name="frlowerleg_link_joint" type="fixed">
+    <origin rpy="0.00000 -1.57080 0.00000" xyz="0.04402 -0.03563 0.00023"/>
+    <parent link="frpin5_link"/>
+    <child link="frlowerleg_link"/>
+  </joint>
+  <joint name="frcap_link_joint" type="fixed">
+    <origin rpy="0.00000 0.00000 -0.00000" xyz="0.00007 -0.04506 -0.06646"/>
+    <parent link="frlowerleg_link"/>
+    <child link="frcap_link"/>
+  </joint>
+  <joint name="frpin6.1_link_joint" type="fixed">
+    <origin rpy="-0.00000 0.00000 0.00000" xyz="0.00235 -0.02251 0.01767"/>
+    <parent link="frupperleg_link"/>
+    <child link="frpin6.1_link"/>
+  </joint>
+  <joint name="frpin6.2_link_joint" type="fixed">
+    <origin rpy="-0.00000 0.00000 0.00000" xyz="0.00235 -0.02914 0.02502"/>
+    <parent link="frupperleg_link"/>
+    <child link="frpin6.2_link"/>
+  </joint>
+  <joint name="frpin6.3_link_joint" type="fixed">
+    <origin rpy="-0.00000 0.00000 0.00000" xyz="0.00235 -0.02178 0.03165"/>
+    <parent link="frupperleg_link"/>
+    <child link="frpin6.3_link"/>
+  </joint>
+  <joint name="frpin6.4_link_joint" type="fixed">
+    <origin rpy="-0.00000 0.00000 0.00000" xyz="0.00235 -0.01515 0.02429"/>
+    <parent link="frupperleg_link"/>
+    <child link="frpin6.4_link"/>
+  </joint>
+  <joint name="frontplate_link_joint" type="fixed">
+    <origin rpy="0.00000 0.00000 0.00000" xyz="0.05020 -0.16935 0.00102"/>
+    <parent link="baselink_link"/>
+    <child link="frontplate_link"/>
+  </joint>
+  <joint name="blpart3_link_joint" type="fixed">
+    <origin rpy="0.00000 0.00000 -0.00000" xyz="0.00054 0.00531 0.01274"/>
+    <parent link="blpin1_link"/>
+    <child link="blpart3_link"/>
+  </joint>
+  <joint name="leftbodyplate_link_joint" type="fixed">
+    <origin rpy="0.00000 0.00000 0.00000" xyz="0.10883 -0.00070 0.00622"/>
+    <parent link="baselink_link"/>
+    <child link="leftbodyplate_link"/>
+  </joint>
+  <joint name="blpart4_link_joint" type="fixed">
+    <origin rpy="0.00000 0.00000 -0.00000" xyz="0.00054 0.01120 0.02690"/>
+    <parent link="blpin1_link"/>
+    <child link="blpart4_link"/>
+  </joint>
+  <joint name="blpin2_link_joint" type="fixed">
+    <origin rpy="-0.00000 -0.00000 -0.00000" xyz="-0.00001 0.01446 0.03471"/>
+    <parent link="blpin1_link"/>
+    <child link="blpin2_link"/>
+  </joint>
+  <joint name="blpart5_link_joint" type="continuous">
+    <limit effort="100.00000" velocity="10.0"/>
+    <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00761 -0.02200 0.02470"/>
+    <parent link="blupperleg_link"/>
+    <child link="blpart5_link"/>
+    <axis xyz="1.00000 0.00000 0.00000"/>
+    <mimic joint="blpart1_link_joint" multiplier="-1.0" offset="0.0"/>
+  </joint>
+  <joint name="blpin3_link_joint" type="continuous">
+    <limit effort="100.00000" velocity="10.0"/>
+    <origin rpy="0.00000 0.00000 0.00000" xyz="0.00408 0.02931 0.03125"/>
+    <parent link="blpart5_link"/>
+    <child link="blpin3_link"/>
+    <axis xyz="1.00000 0.00000 0.00000"/>
+    <mimic joint="blpart1_link_joint" multiplier="1.0" offset="0.0"/>
+  </joint>
+  <joint name="blpart6_link_joint" type="fixed">
+    <origin rpy="0.00000 0.00000 0.00000" xyz="0.00056 0.01051 -0.01280"/>
+    <parent link="blpin3_link"/>
+    <child link="blpart6_link"/>
+  </joint>
+  <joint name="blpart7.1_link_joint" type="fixed">
+    <origin rpy="-0.00000 0.00000 0.00000" xyz="0.00056 0.03559 -0.04336"/>
+    <parent link="blpin3_link"/>
+    <child link="blpart7.1_link"/>
+  </joint>
+  <joint name="blpart7.2_link_joint" type="fixed">
+    <origin rpy="-0.00000 0.00000 0.00000" xyz="0.00056 0.04702 -0.05727"/>
+    <parent link="blpin3_link"/>
+    <child link="blpart7.2_link"/>
+  </joint>
+  <joint name="blpart8_link_joint" type="fixed">
+    <origin rpy="-0.00000 0.00000 0.00000" xyz="0.00056 0.07210 -0.08783"/>
+    <parent link="blpin3_link"/>
+    <child link="blpart8_link"/>
+  </joint>
+  <joint name="brpin2_link_joint" type="fixed">
+    <origin rpy="-0.00000 -0.00000 0.00000" xyz="0.00053 0.01445 0.03471"/>
+    <parent link="brpin1_link"/>
+    <child link="brpin2_link"/>
+  </joint>
+  <joint name="blhipmotorplate_link_joint" type="continuous">
+    <limit effort="100.00000" velocity="10.0"/>
+    <origin rpy="1.57080 0.00000 0.00000" xyz="0.00000 0.01210 -0.00060"/>
+    <parent link="blhipmotor_link"/>
+    <child link="blhipmotorplate_link"/>
+    <axis xyz="0.00000 0.00000 1.00000"/>
+  </joint>
+  <joint name="blpin4_link_joint" type="fixed">
+    <origin rpy="-0.00000 0.00000 0.00000" xyz="0.00022 0.08261 -0.10063"/>
+    <parent link="blpin3_link"/>
+    <child link="blpin4_link"/>
+  </joint>
+  <joint name="blpin5_link_joint" type="continuous">
+    <limit effort="100.00000" velocity="10.0"/>
+    <origin rpy="-0.00000 1.57080 0.00000" xyz="0.00591 0.06488 -0.07191"/>
+    <parent link="blupperleg_link"/>
+    <child link="blpin5_link"/>
+    <axis xyz="0.00000 0.00000 1.00000"/>
+    <mimic joint="blpart1_link_joint" multiplier="-1.0" offset="0.0"/>
+  </joint>
+  <joint name="bllowerleg_link_joint" type="fixed">
+    <origin rpy="0.00000 -1.57080 0.00000" xyz="0.04402 -0.03563 -0.00306"/>
+    <parent link="blpin5_link"/>
+    <child link="bllowerleg_link"/>
+  </joint>
+  <joint name="blcap_link_joint" type="fixed">
+    <origin rpy="0.00000 0.00000 -0.00000" xyz="-0.00007 -0.04506 -0.06646"/>
+    <parent link="bllowerleg_link"/>
+    <child link="blcap_link"/>
+  </joint>
+  <joint name="blpin6.1_link_joint" type="fixed">
+    <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00235 -0.02914 0.02502"/>
+    <parent link="blupperleg_link"/>
+    <child link="blpin6.1_link"/>
+  </joint>
+  <joint name="blpin6.2_link_joint" type="fixed">
+    <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00235 -0.01515 0.02429"/>
+    <parent link="blupperleg_link"/>
+    <child link="blpin6.2_link"/>
+  </joint>
+  <joint name="blpin6.3_link_joint" type="fixed">
+    <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00235 -0.02251 0.01767"/>
+    <parent link="blupperleg_link"/>
+    <child link="blpin6.3_link"/>
+  </joint>
+  <joint name="blpin6.4_link_joint" type="fixed">
+    <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00235 -0.02178 0.03165"/>
+    <parent link="blupperleg_link"/>
+    <child link="blpin6.4_link"/>
+  </joint>
+  <joint name="brhipmotor_link_joint" type="fixed">
+    <origin rpy="0.00000 0.00000 0.00000" xyz="-0.01150 0.06572 -0.00421"/>
+    <parent link="baselink_link"/>
+    <child link="brhipmotor_link"/>
+  </joint>
+  <joint name="brhipmotorplate_link_joint" type="continuous">
+    <limit effort="100.00000" velocity="10.0"/>
+    <origin rpy="1.57080 0.00000 0.00000" xyz="-0.00000 0.01210 -0.00060"/>
+    <parent link="brhipmotor_link"/>
+    <child link="brhipmotorplate_link"/>
+    <axis xyz="0.00000 0.00000 1.00000"/>
+  </joint>
+  <joint name="blhip_link_joint" type="fixed">
+    <origin rpy="-1.57080 0.00000 0.00000" xyz="0.00893 0.00101 -0.03472"/>
+    <parent link="blhipmotorplate_link"/>
+    <child link="blhip_link"/>
+  </joint>
+  <joint name="brhip_link_joint" type="fixed">
+    <origin rpy="-1.57080 0.00000 0.00000" xyz="-0.00893 0.00101 -0.03472"/>
+    <parent link="brhipmotorplate_link"/>
+    <child link="brhip_link"/>
+  </joint>
+  <joint name="brlowerlegmotor_link_joint" type="fixed">
+    <origin rpy="-0.00000 0.00000 0.00000" xyz="-0.01075 -0.00940 -0.01531"/>
+    <parent link="brhip_link"/>
+    <child link="brlowerlegmotor_link"/>
+  </joint>
+  <joint name="brupperlegmotor_link_joint" type="fixed">
+    <origin rpy="-0.00000 0.00000 0.00000" xyz="-0.01075 0.00961 0.01329"/>
+    <parent link="brhip_link"/>
+    <child link="brupperlegmotor_link"/>
+  </joint>
+  <joint name="brupperlegmotoplate_link_joint" type="continuous">
+    <limit effort="100.00000" velocity="10.0"/>
+    <origin rpy="0.00000 1.57080 0.00000" xyz="-0.01210 0.00060 -0.00000"/>
+    <parent link="brupperlegmotor_link"/>
+    <child link="brupperlegmotoplate_link"/>
+    <axis xyz="0.00000 0.00000 1.00000"/>
+  </joint>
+  <joint name="brupperleg_link_joint" type="fixed">
+    <origin rpy="-0.00000 -1.57080 0.00000" xyz="0.02466 0.02215 -0.01528"/>
+    <parent link="brupperlegmotoplate_link"/>
+    <child link="brupperleg_link"/>
+  </joint>
+  <joint name="brpart1_link_joint" type="continuous">
+    <limit effort="100.00000" velocity="10.0"/>
+    <origin rpy="-0.00000 1.57080 0.00000" xyz="0.01314 -0.04234 -0.00394"/>
+    <parent link="brupperleg_link"/>
+    <child link="brpart1_link"/>
+    <axis xyz="0.00000 0.00000 1.00000"/>
+  </joint>
+  <joint name="brpin1_link_joint" type="continuous">
+    <limit effort="100.00000" velocity="10.0"/>
+    <origin rpy="-0.00000 -1.57080 0.00000" xyz="-0.01583 -0.03122 -0.00962"/>
+    <parent link="brpart1_link"/>
+    <child link="brpin1_link"/>
+    <axis xyz="1.00000 0.00000 0.00000"/>
+    <mimic joint="brpart1_link_joint" multiplier="-1.0" offset="0.0"/>
+  </joint>
+  <joint name="brpart2_link_joint" type="fixed">
+    <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00054 0.00325 0.00781"/>
+    <parent link="brpin1_link"/>
+    <child link="brpart2_link"/>
+  </joint>
+  <joint name="brpart3_link_joint" type="fixed">
+    <origin rpy="-0.00000 0.00000 0.00000" xyz="-0.00054 0.00531 0.01274"/>
+    <parent link="brpin1_link"/>
+    <child link="brpart3_link"/>
+  </joint>
+  <joint name="brpart4_link_joint" type="fixed">
+    <origin rpy="-0.00000 0.00000 -0.00000" xyz="-0.00054 0.01120 0.02690"/>
+    <parent link="brpin1_link"/>
+    <child link="brpart4_link"/>
+  </joint>
+  <joint name="bllowerlegmotor_link_joint" type="fixed">
+    <origin rpy="0.00000 0.00000 0.00000" xyz="0.01075 -0.00940 -0.01531"/>
+    <parent link="blhip_link"/>
+    <child link="bllowerlegmotor_link"/>
+  </joint>
+  <joint name="brpart5_link_joint" type="continuous">
+    <limit effort="100.00000" velocity="10.0"/>
+    <origin rpy="0.00000 1.57080 0.00000" xyz="0.00761 -0.02386 0.02472"/>
+    <parent link="brupperleg_link"/>
+    <child link="brpart5_link"/>
+    <axis xyz="0.00000 0.00000 1.00000"/>
+    <mimic joint="brpart1_link_joint" multiplier="1.0" offset="0.0"/>
+  </joint>
+  <joint name="brpin3_link_joint" type="continuous">
+    <limit effort="100.00000" velocity="0.00000"/>
+    <origin rpy="-0.00000 -1.57080 0.00000" xyz="-0.03124 0.03117 -0.00356"/>
+    <parent link="brpart5_link"/>
+    <child link="brpin3_link"/>
+    <axis xyz="1.00000 0.00000 0.00000"/>
+    <mimic joint="brpart1_link_joint" multiplier="-1.0" offset="0.0"/>
+  </joint>
+  <joint name="brpart6_link_joint" type="fixed">
+    <origin rpy="-0.00000 0.00000 0.00000" xyz="-0.00107 0.01052 -0.01280"/>
+    <parent link="brpin3_link"/>
+    <child link="brpart6_link"/>
+  </joint>
+  <joint name="brpart7.1_link_joint" type="fixed">
+    <origin rpy="-0.00000 0.00000 0.00000" xyz="-0.00107 0.03560 -0.04336"/>
+    <parent link="brpin3_link"/>
+    <child link="brpart7.1_link"/>
+  </joint>
+  <joint name="brpart7.2_link_joint" type="fixed">
+    <origin rpy="-0.00000 0.00000 0.00000" xyz="-0.00107 0.04702 -0.05727"/>
+    <parent link="brpin3_link"/>
+    <child link="brpart7.2_link"/>
+  </joint>
+  <joint name="brpart8_link_joint" type="fixed">
+    <origin rpy="-0.00000 0.00000 0.00000" xyz="-0.00107 0.07210 -0.08783"/>
+    <parent link="brpin3_link"/>
+    <child link="brpart8_link"/>
+  </joint>
+  <joint name="brpin4_link_joint" type="fixed">
+    <origin rpy="-0.00000 0.00000 0.00000" xyz="-0.00074 0.08261 -0.10063"/>
+    <parent link="brpin3_link"/>
+    <child link="brpin4_link"/>
+  </joint>
+  <joint name="brpin5_link_joint" type="continuous">
+    <limit effort="100.00000" velocity="10.0"/>
+    <origin rpy="-0.00000 1.57080 -0.00000" xyz="-0.00308 0.06487 -0.07191"/>
+    <parent link="brupperleg_link"/>
+    <child link="brpin5_link"/>
+    <axis xyz="0.00000 0.00000 1.00000"/>
+    <mimic joint="brpart1_link_joint" multiplier="1.0" offset="0.0"/>
+  </joint>
+  <joint name="brlowerleg_link_joint" type="fixed">
+    <origin rpy="0.00000 -1.57080 0.00000" xyz="0.04402 -0.03562 0.00023"/>
+    <parent link="brpin5_link"/>
+    <child link="brlowerleg_link"/>
+  </joint>
+  <joint name="blupperlegmotor_link_joint" type="fixed">
+    <origin rpy="0.00000 0.00000 0.00000" xyz="0.01075 0.00961 0.01329"/>
+    <parent link="blhip_link"/>
+    <child link="blupperlegmotor_link"/>
+  </joint>
+  <joint name="brcap_link_joint" type="fixed">
+    <origin rpy="-0.00000 0.00000 -0.00000" xyz="0.00007 -0.04506 -0.06646"/>
+    <parent link="brlowerleg_link"/>
+    <child link="brcap_link"/>
+  </joint>
+  <joint name="brpin6.1_link_joint" type="fixed">
+    <origin rpy="-0.00000 0.00000 0.00000" xyz="0.00235 -0.02914 0.02502"/>
+    <parent link="brupperleg_link"/>
+    <child link="brpin6.1_link"/>
+  </joint>
+  <joint name="brpin6.2_link_joint" type="fixed">
+    <origin rpy="-0.00000 0.00000 0.00000" xyz="0.00235 -0.01515 0.02429"/>
+    <parent link="brupperleg_link"/>
+    <child link="brpin6.2_link"/>
+  </joint>
+  <joint name="brpin6.3_link_joint" type="fixed">
+    <origin rpy="-0.00000 0.00000 0.00000" xyz="0.00235 -0.02251 0.01767"/>
+    <parent link="brupperleg_link"/>
+    <child link="brpin6.3_link"/>
+  </joint>
+  <joint name="brpin6.4_link_joint" type="fixed">
+    <origin rpy="-0.00000 0.00000 0.00000" xyz="0.00235 -0.02178 0.03165"/>
+    <parent link="brupperleg_link"/>
+    <child link="brpin6.4_link"/>
+  </joint>
+  <joint name="flhipmotor_link_joint" type="fixed">
+    <origin rpy="0.00000 0.00000 0.00000" xyz="0.11055 -0.06449 -0.00419"/>
+    <parent link="baselink_link"/>
+    <child link="flhipmotor_link"/>
+  </joint>
+  <joint name="flhipmotorplate_link_joint" type="continuous">
+    <limit effort="100.00000" velocity="10.0"/>
+    <origin rpy="-1.57080 0.00000 0.00000" xyz="-0.00000 -0.01210 -0.00060"/>
+    <parent link="flhipmotor_link"/>
+    <child link="flhipmotorplate_link"/>
+    <axis xyz="0.00000 0.00000 1.00000"/>
+  </joint>
+  <joint name="flhip_link_joint" type="fixed">
+    <origin rpy="1.57080 0.00000 0.00000" xyz="0.00869 -0.00101 -0.03487"/>
+    <parent link="flhipmotorplate_link"/>
+    <child link="flhip_link"/>
+  </joint>
+  <joint name="fllowerlegmotor_link_joint" type="fixed">
+    <origin rpy="0.00000 0.00000 0.00000" xyz="0.01075 -0.00940 -0.01531"/>
+    <parent link="flhip_link"/>
+    <child link="fllowerlegmotor_link"/>
+  </joint>
+  <joint name="flupperlegmotor_link_joint" type="fixed">
+    <origin rpy="0.00000 0.00000 0.00000" xyz="0.01075 0.00961 0.01329"/>
+    <parent link="flhip_link"/>
+    <child link="flupperlegmotor_link"/>
+  </joint>
+  <joint name="lidar_link_joint" type="fixed">
+    <origin rpy="0.00000 0.00000 0.00000" xyz="0.04902 -0.12266 0.04973"/>
+    <parent link="baselink_link"/>
+    <child link="lidar_link"/>
+  </joint>
+  <joint name="blupperlegmotorplate_link_joint" type="continuous">
+    <limit effort="100.00000" velocity="10.0"/>
+    <origin rpy="0.00000 -1.57080 0.00000" xyz="0.01210 0.00060 -0.00000"/>
+    <parent link="blupperlegmotor_link"/>
+    <child link="blupperlegmotorplate_link"/>
+    <axis xyz="0.00000 0.00000 1.00000"/>
+  </joint>
+  <joint name="flupperlegmotorplate_link_joint" type="continuous">
+    <limit effort="100.00000" velocity="10.0"/>
+    <origin rpy="-0.00000 -1.57080 0.00000" xyz="0.01210 0.00060 -0.00000"/>
+    <parent link="flupperlegmotor_link"/>
+    <child link="flupperlegmotorplate_link"/>
+    <axis xyz="0.00000 0.00000 1.00000"/>
+  </joint>
+  <joint name="flupperleg_link_joint" type="fixed">
+    <origin rpy="0.00000 1.57080 0.00000" xyz="-0.02466 0.02215 -0.01528"/>
+    <parent link="flupperlegmotorplate_link"/>
+    <child link="flupperleg_link"/>
+  </joint>
+  <joint name="flpart1_link_joint" type="continuous">
+    <limit effort="100.00000" velocity="10.0"/>
+    <origin rpy="0.00000 -1.57080 0.00000" xyz="-0.01314 -0.04236 -0.00393"/>
+    <parent link="flupperleg_link"/>
+    <child link="flpart1_link"/>
+    <axis xyz="0.00000 0.00000 1.00000"/>
+  </joint>
+  <joint name="flpin1_link_joint" type="continuous">
+    <limit effort="100.00000" velocity="10.0"/>
+    <origin rpy="0.00000 1.57080 0.00000" xyz="0.01581 -0.03120 -0.00987"/>
+    <parent link="flpart1_link"/>
+    <child link="flpin1_link"/>
+    <axis xyz="1.00000 0.00000 0.00000"/>
+    <mimic joint="flpart1_link_joint" multiplier="1.0" offset="0.0"/>
+  </joint>
+  <joint name="flpart2_link_joint" type="fixed">
+    <origin rpy="0.00000 0.00000 -0.00000" xyz="0.00029 0.00325 0.00781"/>
+    <parent link="flpin1_link"/>
+    <child link="flpart2_link"/>
+  </joint>
+  <joint name="flpart3_link_joint" type="fixed">
+    <origin rpy="0.00000 0.00000 -0.00000" xyz="0.00029 0.00531 0.01274"/>
+    <parent link="flpin1_link"/>
+    <child link="flpart3_link"/>
+  </joint>
+  <joint name="flpart4_link_joint" type="fixed">
+    <origin rpy="0.00000 0.00000 -0.00000" xyz="0.00029 0.01120 0.02690"/>
+    <parent link="flpin1_link"/>
+    <child link="flpart4_link"/>
+  </joint>
+  <joint name="flpin2_link_joint" type="fixed">
+    <origin rpy="0.00000 0.00000 -0.00000" xyz="-0.00026 0.01446 0.03471"/>
+    <parent link="flpin1_link"/>
+    <child link="flpin2_link"/>
+  </joint>
+  <joint name="flpart5_link_joint" type="continuous">
+    <limit effort="100.00000" velocity="10.0"/>
+    <origin rpy="0.00000 -1.57080 0.00000" xyz="-0.00761 -0.02214 0.02465"/>
+    <parent link="flupperleg_link"/>
+    <child link="flpart5_link"/>
+    <axis xyz="0.00000 0.00000 1.00000"/>
+    <mimic joint="flpart1_link_joint" multiplier="1.0" offset="0.0"/>
+  </joint>
+  <joint name="flpin3_link_joint" type="continuous">
+    <limit effort="100.00000" velocity="10.0"/>
+    <origin rpy="0.00000 1.57080 0.00000" xyz="0.03131 0.02945 -0.00408"/>
+    <parent link="flpart5_link"/>
+    <child link="flpin3_link"/>
+    <axis xyz="1.00000 0.00000 0.00000"/>
+    <mimic joint="flpart1_link_joint" multiplier="1.0" offset="0.0"/>
+  </joint>
+  <joint name="blupperleg_link_joint" type="fixed">
+    <origin rpy="0.00000 1.57080 0.00000" xyz="-0.02466 0.02215 -0.01528"/>
+    <parent link="blupperlegmotorplate_link"/>
+    <child link="blupperleg_link"/>
+  </joint>
+  <joint name="flpart6_link_joint" type="fixed">
+    <origin rpy="0.00000 0.00000 -0.00000" xyz="0.00056 0.01051 -0.01280"/>
+    <parent link="flpin3_link"/>
+    <child link="flpart6_link"/>
+  </joint>
+  <joint name="flpart7.1_link_joint" type="fixed">
+    <origin rpy="0.00000 0.00000 -0.00000" xyz="0.00056 0.03559 -0.04336"/>
+    <parent link="flpin3_link"/>
+    <child link="flpart7.1_link"/>
+  </joint>
+  <joint name="flpart7.2_link_joint" type="fixed">
+    <origin rpy="0.00000 0.00000 -0.00000" xyz="0.00056 0.04702 -0.05727"/>
+    <parent link="flpin3_link"/>
+    <child link="flpart7.2_link"/>
+  </joint>
+  <joint name="flpart8_link_joint" type="fixed">
+    <origin rpy="0.00000 0.00000 -0.00000" xyz="0.00056 0.07210 -0.08783"/>
+    <parent link="flpin3_link"/>
+    <child link="flpart8_link"/>
+  </joint>
+  <joint name="flpin4_link_joint" type="fixed">
+    <origin rpy="0.00000 0.00000 -0.00000" xyz="0.00022 0.08261 -0.10063"/>
+    <parent link="flpin3_link"/>
+    <child link="flpin4_link"/>
+  </joint>
+  <joint name="flpin5_link_joint" type="continuous">
+    <limit effort="100.00000" velocity="10.0"/>
+    <origin rpy="0.00000 1.57080 0.00000" xyz="0.00591 0.06488 -0.07191"/>
+    <parent link="flupperleg_link"/>
+    <child link="flpin5_link"/>
+    <axis xyz="0.00000 0.00000 1.00000"/>
+    <mimic joint="flpart1_link_joint" multiplier="-1.0" offset="0.0"/>
+  </joint>
+  <joint name="fllowerleg_link_joint" type="fixed">
+    <origin rpy="0.00000 -1.57080 0.00000" xyz="0.04402 -0.03563 -0.00306"/>
+    <parent link="flpin5_link"/>
+    <child link="fllowerleg_link"/>
+  </joint>
+  <joint name="flcap_link_joint" type="fixed">
+    <origin rpy="-0.00000 0.00000 -0.00000" xyz="-0.00007 -0.04506 -0.06646"/>
+    <parent link="fllowerleg_link"/>
+    <child link="flcap_link"/>
+  </joint>
+  <joint name="flpin6.1_link_joint" type="fixed">
+    <origin rpy="0.00000 0.00000 -0.00000" xyz="-0.00235 -0.02251 0.01767"/>
+    <parent link="flupperleg_link"/>
+    <child link="flpin6.1_link"/>
+  </joint>
+  <joint name="flpin6.2_link_joint" type="fixed">
+    <origin rpy="0.00000 0.00000 -0.00000" xyz="-0.00235 -0.02914 0.02502"/>
+    <parent link="flupperleg_link"/>
+    <child link="flpin6.2_link"/>
+  </joint>
+  <joint name="blpart1_link_joint" type="continuous">
+    <limit effort="100.00000" velocity="10.0"/>
+    <origin rpy="-0.00000 -1.57080 0.00000" xyz="-0.01314 -0.04226 -0.00388"/>
+    <parent link="blupperleg_link"/>
+    <child link="blpart1_link"/>
+    <axis xyz="0.00000 0.00000 1.00000"/>
+  </joint>
+  <joint name="flpin6.3_link_joint" type="fixed">
+    <origin rpy="0.00000 0.00000 -0.00000" xyz="-0.00235 -0.02178 0.03165"/>
+    <parent link="flupperleg_link"/>
+    <child link="flpin6.3_link"/>
+  </joint>
+  <joint name="flpin6.4_link_joint" type="fixed">
+    <origin rpy="0.00000 0.00000 -0.00000" xyz="-0.00235 -0.01515 0.02429"/>
+    <parent link="flupperleg_link"/>
+    <child link="flpin6.4_link"/>
+  </joint>
+  <joint name="frhipmotor_link_joint" type="fixed">
+    <origin rpy="0.00000 0.00000 0.00000" xyz="-0.01174 -0.06449 -0.00419"/>
+    <parent link="baselink_link"/>
+    <child link="frhipmotor_link"/>
+  </joint>
+  <joint name="frhipmotorplate_link_joint" type="continuous">
+    <limit effort="100.00000" velocity="10.0"/>
+    <origin rpy="-1.57080 0.00000 0.00000" xyz="0.00000 -0.01210 -0.00060"/>
+    <parent link="frhipmotor_link"/>
+    <child link="frhipmotorplate_link"/>
+    <axis xyz="0.00000 0.00000 1.00000"/>
+  </joint>
+  <joint name="frhip_link_joint" type="fixed">
+    <origin rpy="1.57080 0.00000 0.00000" xyz="-0.00869 -0.00101 -0.03487"/>
+    <parent link="frhipmotorplate_link"/>
+    <child link="frhip_link"/>
+  </joint>
+  <joint name="frlowerlegmotor_link_joint" type="fixed">
+    <origin rpy="0.00000 0.00000 0.00000" xyz="-0.01075 -0.00940 -0.01531"/>
+    <parent link="frhip_link"/>
+    <child link="frlowerlegmotor_link"/>
+  </joint>
+  <joint name="frupperlegmotor_link_joint" type="fixed">
+    <origin rpy="0.00000 0.00000 0.00000" xyz="-0.01075 0.00961 0.01329"/>
+    <parent link="frhip_link"/>
+    <child link="frupperlegmotor_link"/>
+  </joint>
+  <joint name="frupperlegmotorplate_link_joint" type="continuous">
+    <limit effort="100.00000" velocity="10.0"/>
+    <origin rpy="-0.00000 1.57080 0.00000" xyz="-0.01210 0.00060 0.00000"/>
+    <parent link="frupperlegmotor_link"/>
+    <child link="frupperlegmotorplate_link"/>
+    <axis xyz="0.00000 0.00000 1.00000"/>
+  </joint>
+  <joint name="frupperleg_link_joint" type="fixed">
+    <origin rpy="0.00000 -1.57080 0.00000" xyz="0.02466 0.02215 -0.01528"/>
+    <parent link="frupperlegmotorplate_link"/>
+    <child link="frupperleg_link"/>
+  </joint>
+  <joint name="frpart1_link_joint" type="continuous">
+    <limit effort="100.00000" velocity="10.0"/>
+    <origin rpy="0.00000 1.57080 0.00000" xyz="0.01314 -0.04227 -0.00397"/>
+    <parent link="frupperleg_link"/>
+    <child link="frpart1_link"/>
+    <axis xyz="0.00000 0.00000 1.00000"/>
+  </joint>
+  <joint name="blpin1_link_joint" type="continuous">
+    <limit effort="100.00000" velocity="10.0"/>
+    <origin rpy="0.00000 1.57080 0.00000" xyz="0.01577 -0.03130 -0.00962"/>
+    <parent link="blpart1_link"/>
+    <child link="blpin1_link"/>
+    <axis xyz="1.00000 0.00000 0.00000"/>
+    <mimic joint="blpart1_link_joint" multiplier="1.0" offset="0.0"/>
+  </joint>
+  <joint name="frpin1_link_joint" type="continuous">
+    <limit effort="100.00000" velocity="10.0"/>
+    <origin rpy="-0.00000 -1.57080 0.00000" xyz="-0.01586 -0.03129 -0.00987"/>
+    <parent link="frpart1_link"/>
+    <child link="frpin1_link"/>
+    <axis xyz="1.00000 0.00000 0.00000"/>
+    <mimic joint="frpart1_link_joint" multiplier="-1.0" offset="0.0"/>
+  </joint>
+  <joint name="frpart2_link_joint" type="fixed">
+    <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00029 0.00325 0.00781"/>
+    <parent link="frpin1_link"/>
+    <child link="frpart2_link"/>
+  </joint>
+  <joint name="frpart3_link_joint" type="fixed">
+    <origin rpy="0.00000 0.00000 -0.00000" xyz="-0.00029 0.00531 0.01274"/>
+    <parent link="frpin1_link"/>
+    <child link="frpart3_link"/>
+  </joint>
+  <joint name="frpart4_link_joint" type="fixed">
+    <origin rpy="0.00000 0.00000 -0.00000" xyz="-0.00029 0.01121 0.02690"/>
+    <parent link="frpin1_link"/>
+    <child link="frpart4_link"/>
+  </joint>
+  <joint name="frpin2_link_joint" type="fixed">
+    <origin rpy="-0.00000 0.00000 0.00000" xyz="0.00084 0.01446 0.03471"/>
+    <parent link="frpin1_link"/>
+    <child link="frpin2_link"/>
+  </joint>
+  <joint name="frpart5_link_joint" type="continuous">
+    <limit effort="100.00000" velocity="10.0"/>
+    <origin rpy="-0.00000 1.57080 0.00000" xyz="0.00761 -0.02386 0.02464"/>
+    <parent link="frupperleg_link"/>
+    <child link="frpart5_link"/>
+    <axis xyz="0.00000 0.00000 1.00000"/>
+    <mimic joint="frpart1_link_joint" multiplier="1.0" offset="0.0"/>
+  </joint>
+  <joint name="frpin3_link_joint" type="continuous">
+    <limit effort="100.00000" velocity="10.0"/>
+    <origin rpy="-0.00000 -1.57080 0.00000" xyz="-0.03132 0.03118 -0.00350"/>
+    <parent link="frpart5_link"/>
+    <child link="frpin3_link"/>
+    <axis xyz="1.00000 0.00000 0.00000"/>
+    <mimic joint="frpart1_link_joint" multiplier="-1.0" offset="0.0"/>
+  </joint>
+  <joint name="frpart6_link_joint" type="fixed">
+    <origin rpy="0.00000 0.00000 -0.00000" xyz="-0.00113 0.01051 -0.01280"/>
+    <parent link="frpin3_link"/>
+    <child link="frpart6_link"/>
+  </joint>
+  <joint name="frpart7.1_link_joint" type="fixed">
+    <origin rpy="0.00000 0.00000 -0.00000" xyz="-0.00113 0.03559 -0.04336"/>
+    <parent link="frpin3_link"/>
+    <child link="frpart7.1_link"/>
+  </joint>
+  <joint name="frpart7.2_link_joint" type="fixed">
+    <origin rpy="0.00000 0.00000 -0.00000" xyz="-0.00113 0.04701 -0.05727"/>
+    <parent link="frpin3_link"/>
+    <child link="frpart7.2_link"/>
+  </joint>
+  <link name="baselink_link">
+    <collision name="baselink_collision">
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.058.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.00008" ixy="0.00000" ixz="-0.00000" iyy="0.00003" iyz="0.00000" izz="0.00010"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.04308 0.00133 0.00139"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="baselink">
+      <material name="silver"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.058.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="backplate_link">
+    <collision name="backplate_collision">
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.063.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.00001" ixy="0.00000" ixz="0.00000" iyy="0.00003" iyz="0.00000" izz="0.00002"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 0.00042 -0.00000"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="backplate">
+      <material name="silver"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.063.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="blpin1_link">
+    <collision name="blpin1_collision">
+      <origin rpy="-0.00000 -0.00000 -0.00000" xyz="-0.00000 -0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.084.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.00001" ixy="-0.00000" ixz="-0.00000" iyy="0.00001" iyz="-0.00000" izz="0.00001"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00230 -0.00000 -0.00000"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="blpin1">
+      <material name="silver"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.084.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="frpart7.2_link">
+    <collision name="frpart7.2_collision">
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.041.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.0001" ixy="0.00000" ixz="0.00000" iyy="0.0001" iyz="0.00000" izz="0.0001"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 0.00000 0.00000"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="frpart7.2">
+      <material name="silver"/>
+      <origin rpy="0.00000 0.00000 -0.00000" xyz="0.00000 -0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.041.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="frpart8_link">
+    <collision name="frpart8_collision">
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.042.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.00001" ixy="-0.00000" ixz="-0.00000" iyy="0.00001" iyz="-0.00000" izz="0.00001"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 0.00376 -0.00457"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="frpart8">
+      <material name="silver"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.042.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="frpin4_link">
+    <collision name="frpin4_collision">
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00000 0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.056.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.00001" ixy="-0.00000" ixz="-0.00000" iyy="0.00001" iyz="-0.00000" izz="0.00001"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00205 0.00000 -0.00000"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="frpin4">
+      <material name="silver"/>
+      <origin rpy="0.00000 0.00000 -0.00000" xyz="0.00000 0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.056.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="frpin5_link">
+    <collision name="frpin5_collision">
+      <origin rpy="0.00000 -1.57080 0.00000" xyz="-0.00000 -0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.057.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.00001" ixy="-0.00000" ixz="-0.00000" iyy="0.00001" iyz="-0.00000" izz="0.00001"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00001 -0.00000 -0.00106"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="frpin5">
+      <material name="silver"/>
+      <origin rpy="0.00000 -1.57080 0.00000" xyz="0.00000 0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.057.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="frlowerleg_link">
+    <collision name="frlowerleg_collision">
+      <origin rpy="0.00000 0.00000 -0.00000" xyz="0.00000 -0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.030.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.00002" ixy="-0.00000" ixz="-0.00000" iyy="0.00001" iyz="-0.00001" izz="0.00001"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00075 0.00203 0.00418"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="frlowerleg">
+      <material name="silver"/>
+      <origin rpy="0.00000 0.00000 -0.00000" xyz="0.00000 0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.030.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="frcap_link">
+    <collision name="frcap_collision">
+      <origin rpy="-0.26180 0.00000 0.00000" xyz="-0.00000 -0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.062.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.0001" ixy="0.00000" ixz="-0.00000" iyy="0.0001" iyz="-0.00000" izz="0.0001"/>
+
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00000 0.00010 -0.00075"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="frcap">
+      <material name="silver"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00000 -0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.062.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="frpin6.1_link">
+    <collision name="frpin6.1_collision">
+      <origin rpy="0.00000 0.00000 -0.00000" xyz="-0.00000 -0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.052.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.00001" ixy="-0.00000" ixz="-0.00000" iyy="0.00001" iyz="-0.00000" izz="0.00001"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00223 0.00000 -0.00000"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="frpin6.1">
+      <material name="silver"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00000 -0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.052.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="frpin6.2_link">
+    <collision name="frpin6.2_collision">
+      <origin rpy="0.00000 0.00000 -0.00000" xyz="-0.00000 0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.053.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.00001" ixy="-0.00000" ixz="-0.00000" iyy="0.00001" iyz="-0.00000" izz="0.00001"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00223 0.00000 -0.00000"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="frpin6.2">
+      <material name="silver"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00000 0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.053.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="frpin6.3_link">
+    <collision name="frpin6.3_collision">
+      <origin rpy="0.00000 0.00000 -0.00000" xyz="-0.00000 0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.054.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.0001" ixy="0.00000" ixz="0.00000" iyy="0.0001" iyz="0.00000" izz="0.0001"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00223 0.00000 0.00000"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="frpin6.3">
+      <material name="silver"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00000 0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.054.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="frpin6.4_link">
+    <collision name="frpin6.4_collision">
+      <origin rpy="0.00000 0.00000 -0.00000" xyz="-0.00000 -0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.055.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.0001" ixy="0.00000" ixz="-0.00000" iyy="0.0001" iyz="-0.00000" izz="0.0001"/>
+
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00223 0.00000 0.00000"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="frpin6.4">
+      <material name="silver"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00000 -0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.055.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="blpart2_link">
+    <collision name="blpart2_collision">
+      <origin rpy="-0.00000 -0.00000 -0.00000" xyz="0.00000 0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.068.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.00001" ixy="-0.00000" ixz="-0.00000" iyy="0.00001" iyz="-0.00000" izz="0.00001"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 -0.00120 -0.00290"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="blpart2">
+      <material name="silver"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.068.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="frontplate_link">
+    <collision name="frontplate_collision">
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 -0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.060.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.00001" ixy="0.00000" ixz="-0.00000" iyy="0.00003" iyz="-0.00000" izz="0.00002"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 -0.00042 -0.00000"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="frontplate">
+      <material name="silver"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 -0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.060.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="leftbodyplate_link">
+    <collision name="leftbodyplate_collision">
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.059.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.00002" ixy="-0.00000" ixz="0.00000" iyy="0.00001" iyz="0.00000" izz="0.00001"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00714 0.00038 -0.00262"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="leftbodyplate">
+      <material name="silver"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.059.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="blpart3_link">
+    <collision name="blpart3_collision">
+      <origin rpy="-0.00000 -0.00000 -0.00000" xyz="0.00000 -0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.067.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.00001" ixy="-0.00000" ixz="-0.00000" iyy="0.00001" iyz="-0.00000" izz="0.00001"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 0.00000 0.00000"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="blpart3">
+      <material name="silver"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 -0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.067.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="blpart4_link">
+    <collision name="blpart4_collision">
+      <origin rpy="-0.00000 -0.00000 -0.00000" xyz="-0.00000 0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.070.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.00000" ixy="0.00000" ixz="0.00000" iyy="0.00000" iyz="-0.00000" izz="0.00000"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 0.00120 0.00290"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="blpart4">
+      <material name="silver"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.070.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="blpart5_link">
+    <collision name="blpart5_collision">
+      <origin rpy="-0.00000 -0.00000 0.00000" xyz="-0.00000 -0.00187 0.01128"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.072.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.00001" ixy="0.00000" ixz="0.00000" iyy="0.00001" iyz="0.00000" izz="0.00001"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00133 -0.00215 0.02019"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="blpart5">
+      <material name="silver"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 -0.00187 0.01128"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.072.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="blpin3_link">
+    <collision name="blpin3_collision">
+      <origin rpy="-0.00000 -0.00000 0.00000" xyz="-0.00000 -0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.086.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.00001" ixy="-0.00000" ixz="-0.00000" iyy="0.00001" iyz="-0.00000" izz="0.00001"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00291 0.00000 -0.00000"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="blpin3">
+      <material name="silver"/>
+      <origin rpy="0.00000 0.00000 -0.00000" xyz="-0.00000 -0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.086.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="blpart6_link">
+    <collision name="blpart6_collision">
+      <origin rpy="-0.00000 -0.00000 0.00000" xyz="-0.00000 -0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.075.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.00001" ixy="-0.00000" ixz="-0.00000" iyy="0.00001" iyz="-0.00000" izz="0.00001"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00000 -0.00376 0.00457"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="blpart6">
+      <material name="silver"/>
+      <origin rpy="0.00000 0.00000 -0.00000" xyz="-0.00000 -0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.075.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="blpart7.1_link">
+    <collision name="blpart7.1_collision">
+      <origin rpy="-0.00000 -0.00000 0.00000" xyz="-0.00000 -0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.074.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.0001" ixy="0.00000" ixz="0.00000" iyy="0.0001" iyz="0.00000" izz="0.0001"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00000 -0.00000 0.00000"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="blpart7.1">
+      <material name="silver"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00000 -0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.074.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="blpart7.2_link">
+    <collision name="blpart7.2_collision">
+      <origin rpy="-0.00000 -0.00000 0.00000" xyz="-0.00000 -0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.076.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.00001" ixy="0.00000" ixz="0.00000" iyy="0.00001" iyz="0.00000" izz="0.00001"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00000 -0.00000 0.00000"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="blpart7.2">
+      <material name="silver"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00000 -0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.076.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="blpart8_link">
+    <collision name="blpart8_collision">
+      <origin rpy="-0.00000 -0.00000 0.00000" xyz="-0.00000 -0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.077.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.00001" ixy="-0.00000" ixz="-0.00000" iyy="0.00001" iyz="-0.00000" izz="0.00001"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00000 0.00376 -0.00457"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="blpart8">
+      <material name="silver"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00000 0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.077.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="blhipmotor_link">
+    <collision name="blhipmotor_collision">
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00000 -0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.082.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.00001" ixy="0.00000" ixz="0.00000" iyy="0.00000" iyz="0.00000" izz="0.00000"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 -0.01248 0.00925"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="blhipmotor">
+      <material name="silver"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 -0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.082.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="blpin2_link">
+    <collision name="blpin2_collision">
+      <origin rpy="-0.00000 -0.00000 0.00000" xyz="-0.00000 -0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.085.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.00000" ixy="0.00000" ixz="0.00000" iyy="0.00000" iyz="-0.00000" izz="0.00000"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00291 -0.00000 0.00000"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="blpin2">
+      <material name="silver"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00000 -0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.085.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="blpin4_link">
+    <collision name="blpin4_collision">
+      <origin rpy="-0.00000 -0.00000 0.00000" xyz="-0.00000 -0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.087.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.00001" ixy="-0.00000" ixz="-0.00000" iyy="0.00001" iyz="-0.00000" izz="0.00001"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00205 -0.00000 0.00000"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="blpin4">
+      <material name="silver"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00000 -0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.087.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="blpin5_link">
+    <collision name="blpin5_collision">
+      <origin rpy="-0.00000 -1.57080 -0.00000" xyz="-0.00000 0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.088.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.0001" ixy="0.00000" ixz="0.00000" iyy="0.0001" iyz="0.00000" izz="0.0001"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00000 0.00000 -0.00201"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="blpin5">
+      <material name="silver"/>
+      <origin rpy="0.00000 -1.57080 0.00000" xyz="0.00000 0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.088.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="bllowerleg_link">
+    <collision name="bllowerleg_collision">
+      <origin rpy="-0.00000 0.00000 0.00000" xyz="0.00000 0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.065.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.00002" ixy="0.00000" ixz="0.00000" iyy="0.00001" iyz="-0.00001" izz="0.00001"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00075 0.00203 0.00418"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="bllowerleg">
+      <material name="silver"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.065.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="blcap_link">
+    <collision name="blcap_collision">
+      <origin rpy="-0.10996 0.00000 -0.00000" xyz="-0.00000 -0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.093.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.0001" ixy="0.00000" ixz="-0.00000" iyy="0.0001" iyz="-0.00000" izz="0.0001"/>
+
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00000 0.00009 -0.00075"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="blcap">
+      <material name="silver"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00000 -0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.093.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="blpin6.1_link">
+    <collision name="blpin6.1_collision">
+      <origin rpy="-0.00000 -0.00000 0.00000" xyz="-0.00000 -0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.089.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.00001" ixy="-0.00000" ixz="-0.00000" iyy="0.00001" iyz="-0.00000" izz="0.00001"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00223 0.00000 -0.00000"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="blpin6.1">
+      <material name="silver"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00000 0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.089.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="blpin6.2_link">
+    <collision name="blpin6.2_collision">
+      <origin rpy="-0.00000 -0.00000 0.00000" xyz="-0.00000 -0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.090.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.00001" ixy="-0.00000" ixz="-0.00000" iyy="0.00001" iyz="-0.00000" izz="0.00001"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00223 -0.00000 -0.00000"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="blpin6.2">
+      <material name="silver"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00000 -0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.090.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="blpin6.3_link">
+    <collision name="blpin6.3_collision">
+      <origin rpy="-0.00000 -0.00000 0.00000" xyz="-0.00000 -0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.091.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.0001" ixy="0.00000" ixz="0.00000" iyy="0.0001" iyz="0.00000" izz="0.0001"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00223 0.00000 -0.00000"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="blpin6.3">
+      <material name="silver"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00000 -0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.091.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="blpin6.4_link">
+    <collision name="blpin6.4_collision">
+      <origin rpy="-0.00000 -0.00000 0.00000" xyz="-0.00000 -0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.092.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.00001" ixy="-0.00000" ixz="-0.00000" iyy="0.00001" iyz="-0.00000" izz="0.00001"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00223 -0.00000 -0.00000"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="blpin6.4">
+      <material name="silver"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00000 -0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.092.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="brhipmotor_link">
+    <collision name="brhipmotor_collision">
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 -0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.018.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.00001" ixy="-0.00000" ixz="-0.00000" iyy="0.00000" iyz="0.00000" izz="0.00000"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00000 -0.01248 0.00925"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="brhipmotor">
+      <material name="silver"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00000 0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.018.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="blhipmotorplate_link">
+    <collision name="blhipmotorplate_collision">
+      <origin rpy="1.57080 0.00000 0.00000" xyz="-0.00000 0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.083.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.0001" ixy="0.00000" ixz="0.00000" iyy="0.0001" iyz="0.00000" izz="0.0001"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00000 0.00000 -0.00032"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="blhipmotorplate">
+      <material name="silver"/>
+      <origin rpy="-1.57080 0.00000 0.00000" xyz="0.00000 0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.083.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="brhipmotorplate_link">
+    <collision name="brhipmotorplate_collision">
+      <origin rpy="-1.57080 0.00000 0.00000" xyz="0.00000 -0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.019.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.00001" ixy="-0.00000" ixz="-0.00000" iyy="0.00001" iyz="-0.00000" izz="0.00001"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 0.00000 -0.00032"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="brhipmotorplate">
+      <material name="silver"/>
+      <origin rpy="-1.57080 0.00000 0.00000" xyz="-0.00000 -0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.019.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="brhip_link">
+    <collision name="brhip_collision">
+      <origin rpy="-0.00000 0.00000 0.00000" xyz="0.00000 -0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.014.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.0001" ixy="0.00000" ixz="0.00000" iyy="0.0001" iyz="0.00000" izz="0.0001"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00344 0.00010 -0.00107"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="brhip">
+      <material name="silver"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 -0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.014.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="brlowerlegmotor_link">
+    <collision name="brlowerlegmotor_collision">
+      <origin rpy="-0.00000 0.00000 0.00000" xyz="0.00000 -0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.015.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.00000" ixy="-0.00000" ixz="0.00000" iyy="0.00000" iyz="-0.00000" izz="0.00001"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.01248 0.00925 0.00000"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="brlowerlegmotor">
+      <material name="silver"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 -0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.015.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="brupperlegmotor_link">
+    <collision name="brupperlegmotor_collision">
+      <origin rpy="-0.00000 0.00000 0.00000" xyz="0.00000 -0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.016.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.00000" ixy="0.00000" ixz="-0.00000" iyy="0.00000" iyz="-0.00000" izz="0.00001"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.01248 -0.00925 -0.00000"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="brupperlegmotor">
+      <material name="silver"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 -0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.016.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="brupperlegmotoplate_link">
+    <collision name="brupperlegmotoplate_collision">
+      <origin rpy="3.14159 -0.00000 3.14159" xyz="0.00000 -0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.009.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.0001" ixy="0.00000" ixz="-0.00000" iyy="0.0001" iyz="-0.00000" izz="0.0001"/>
+
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00000 -0.00000 -0.00032"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="brupperlegmotoplate">
+      <material name="silver"/>
+      <origin rpy="-0.00000 -1.57080 0.00000" xyz="-0.00000 -0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.009.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="brupperleg_link">
+    <collision name="brupperleg_collision">
+      <origin rpy="-0.00000 0.00000 0.00000" xyz="-0.00275 -0.00728 0.01496"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.00002" ixy="0.00000" ixz="-0.00000" iyy="0.00001" iyz="0.00001" izz="0.00001"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00130 0.01309 -0.01444"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="brupperleg">
+      <material name="silver"/>
+      <origin rpy="-0.00000 0.00000 0.00000" xyz="0.00000 -0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="brpart1_link">
+    <collision name="brpart1_collision">
+      <origin rpy="-0.00000 -1.57080 0.00000" xyz="-0.00556 -0.01155 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.002.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.00001" ixy="-0.00000" ixz="-0.00000" iyy="0.00001" iyz="-0.00000" izz="0.00001"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00279 -0.00559 0.00052"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="brpart1">
+      <material name="silver"/>
+      <origin rpy="-0.00000 -1.57080 0.00000" xyz="-0.00556 -0.01155 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.002.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="brpin1_link">
+    <collision name="brpin1_collision">
+      <origin rpy="-0.00000 -0.00000 0.00000" xyz="0.00000 -0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.020.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.00001" ixy="-0.00000" ixz="-0.00000" iyy="0.00001" iyz="-0.00000" izz="0.00001"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00230 -0.00000 -0.00000"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="brpin1">
+      <material name="silver"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 -0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.020.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="brpart2_link">
+    <collision name="brpart2_collision">
+      <origin rpy="-0.00000 -0.00000 0.00000" xyz="0.00000 -0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.004.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.00000" ixy="0.00000" ixz="0.00000" iyy="0.00000" iyz="-0.00000" izz="0.00000"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00000 -0.00120 -0.00290"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="brpart2">
+      <material name="silver"/>
+      <origin rpy="-0.00000 0.00000 -0.00000" xyz="-0.00000 -0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.004.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="brpart3_link">
+    <collision name="brpart3_collision">
+      <origin rpy="-0.00000 -0.00000 0.00000" xyz="0.00000 0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.003.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.0001" ixy="0.00000" ixz="-0.00000" iyy="0.0001" iyz="-0.00000" izz="0.0001"/>
+
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00000 0.00000 0.00000"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="brpart3">
+      <material name="silver"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.003.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="blhip_link">
+    <collision name="blhip_collision">
+      <origin rpy="-0.00000 0.00000 0.00000" xyz="-0.00000 -0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.078.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.00001" ixy="0.00000" ixz="0.00000" iyy="0.00001" iyz="0.00000" izz="0.00001"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00344 0.00010 -0.00107"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="blhip">
+      <material name="silver"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00000 -0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.078.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="brpart4_link">
+    <collision name="brpart4_collision">
+      <origin rpy="-0.00000 -0.00000 0.00000" xyz="0.00000 -0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.006.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.00001" ixy="-0.00000" ixz="-0.00000" iyy="0.00001" iyz="-0.00000" izz="0.00001"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00000 0.00120 0.00290"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="brpart4">
+      <material name="silver"/>
+      <origin rpy="-0.00000 0.00000 0.00000" xyz="-0.00000 0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.006.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="brpart5_link">
+    <collision name="brpart5_collision">
+      <origin rpy="-0.00000 -1.57080 0.00000" xyz="-0.01127 -0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.008.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.0001" ixy="0.00000" ixz="0.00000" iyy="0.0001" iyz="0.00000" izz="0.0001"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.02018 -0.00029 0.00133"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="brpart5">
+      <material name="silver"/>
+      <origin rpy="0.00000 -1.57080 0.00000" xyz="-0.01127 0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.008.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="brpin3_link">
+    <collision name="brpin3_collision">
+      <origin rpy="-0.00000 0.00000 0.00000" xyz="0.00000 -0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.022.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.00001" ixy="-0.00000" ixz="-0.00000" iyy="0.00001" iyz="-0.00000" izz="0.00001"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00256 0.00000 0.00000"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="brpin3">
+      <material name="silver"/>
+      <origin rpy="-0.00000 0.00000 0.00000" xyz="-0.00000 -0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.022.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="brpart6_link">
+    <collision name="brpart6_collision">
+      <origin rpy="-0.00000 0.00000 0.00000" xyz="0.00000 -0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.011.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.00001" ixy="-0.00000" ixz="-0.00000" iyy="0.00001" iyz="-0.00000" izz="0.00001"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 -0.00376 0.00457"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="brpart6">
+      <material name="silver"/>
+      <origin rpy="-0.00000 0.00000 0.00000" xyz="0.00000 -0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.011.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="brpart7.1_link">
+    <collision name="brpart7.1_collision">
+      <origin rpy="-0.00000 0.00000 0.00000" xyz="0.00000 0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.010.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.00001" ixy="0.00000" ixz="0.00000" iyy="0.00001" iyz="0.00000" izz="0.00001"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 -0.00000 0.00000"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="brpart7.1">
+      <material name="silver"/>
+      <origin rpy="-0.00000 0.00000 0.00000" xyz="-0.00000 0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.010.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="brpart7.2_link">
+    <collision name="brpart7.2_collision">
+      <origin rpy="-0.00000 0.00000 0.00000" xyz="0.00000 0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.012.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.0001" ixy="0.00000" ixz="0.00000" iyy="0.0001" iyz="0.00000" izz="0.0001"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 -0.00000 0.00000"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="brpart7.2">
+      <material name="silver"/>
+      <origin rpy="-0.00000 0.00000 0.00000" xyz="-0.00000 0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.012.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="brpart8_link">
+    <collision name="brpart8_collision">
+      <origin rpy="-0.00000 0.00000 0.00000" xyz="0.00000 -0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.013.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.00001" ixy="-0.00000" ixz="-0.00000" iyy="0.00001" iyz="-0.00000" izz="0.00001"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 0.00376 -0.00457"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="brpart8">
+      <material name="silver"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00000 -0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.013.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="brpin2_link">
+    <collision name="brpin2_collision">
+      <origin rpy="-0.00000 0.00000 0.00000" xyz="0.00000 -0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.021.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.00001" ixy="-0.00000" ixz="-0.00000" iyy="0.00001" iyz="-0.00000" izz="0.00001"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00256 0.00000 -0.00000"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="brpin2">
+      <material name="silver"/>
+      <origin rpy="-0.00000 0.00000 0.00000" xyz="0.00000 -0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.021.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="brpin4_link">
+    <collision name="brpin4_collision">
+      <origin rpy="-0.00000 0.00000 0.00000" xyz="0.00000 -0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.023.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.00001" ixy="-0.00000" ixz="-0.00000" iyy="0.00001" iyz="-0.00000" izz="0.00001"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00205 0.00000 -0.00000"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="brpin4">
+      <material name="silver"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00000 -0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.023.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="brpin5_link">
+    <collision name="brpin5_collision">
+      <origin rpy="-0.00000 -1.57080 0.00000" xyz="0.00000 0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.024.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.0001" ixy="0.00000" ixz="0.00000" iyy="0.0001" iyz="0.00000" izz="0.0001"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 0.00001 -0.00106"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="brpin5">
+      <material name="silver"/>
+      <origin rpy="0.00000 -1.57080 0.00000" xyz="0.00000 0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.024.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="bllowerlegmotor_link">
+    <collision name="bllowerlegmotor_collision">
+      <origin rpy="-0.00000 0.00000 0.00000" xyz="-0.00000 -0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.079.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.00000" ixy="0.00000" ixz="-0.00000" iyy="0.00000" iyz="-0.00000" izz="0.00001"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.01248 0.00925 -0.00000"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="bllowerlegmotor">
+      <material name="silver"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00000 -0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.079.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="brlowerleg_link">
+    <collision name="brlowerleg_collision">
+      <origin rpy="-0.00000 0.00000 -0.00000" xyz="0.00000 -0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.001.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.00002" ixy="-0.00000" ixz="-0.00000" iyy="0.00001" iyz="-0.00001" izz="0.00001"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00075 0.00203 0.00418"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="brlowerleg">
+      <material name="silver"/>
+      <origin rpy="-0.00000 0.00000 -0.00000" xyz="0.00000 -0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.001.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="brcap_link">
+    <collision name="brcap_collision">
+      <origin rpy="-0.13439 0.00000 0.00000" xyz="0.00000 -0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.061.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.00001" ixy="-0.00000" ixz="-0.00000" iyy="0.00001" iyz="-0.00000" izz="0.00001"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00000 0.00010 -0.00075"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="brcap">
+      <material name="silver"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.061.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="brpin6.1_link">
+    <collision name="brpin6.1_collision">
+      <origin rpy="-0.00000 0.00000 0.00000" xyz="-0.00000 0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.025.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.00000" ixy="0.00000" ixz="0.00000" iyy="0.00000" iyz="-0.00000" izz="0.00000"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00223 0.00000 0.00000"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="brpin6.1">
+      <material name="silver"/>
+      <origin rpy="-0.00000 0.00000 0.00000" xyz="-0.00000 0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.025.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="brpin6.2_link">
+    <collision name="brpin6.2_collision">
+      <origin rpy="-0.00000 0.00000 0.00000" xyz="-0.00000 0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.026.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.00001" ixy="-0.00000" ixz="-0.00000" iyy="0.00001" iyz="-0.00000" izz="0.00001"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00223 -0.00000 0.00000"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="brpin6.2">
+      <material name="silver"/>
+      <origin rpy="-0.00000 0.00000 0.00000" xyz="-0.00000 0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.026.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="brpin6.3_link">
+    <collision name="brpin6.3_collision">
+      <origin rpy="-0.00000 0.00000 0.00000" xyz="-0.00000 0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.027.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.00001" ixy="-0.00000" ixz="-0.00000" iyy="0.00001" iyz="-0.00000" izz="0.00001"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00223 0.00000 -0.00000"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="brpin6.3">
+      <material name="silver"/>
+      <origin rpy="-0.00000 0.00000 0.00000" xyz="-0.00000 0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.027.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="brpin6.4_link">
+    <collision name="brpin6.4_collision">
+      <origin rpy="-0.00000 0.00000 0.00000" xyz="-0.00000 0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.028.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.00000" ixy="0.00000" ixz="0.00000" iyy="0.00000" iyz="-0.00000" izz="0.00000"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00223 -0.00000 0.00000"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="brpin6.4">
+      <material name="silver"/>
+      <origin rpy="-0.00000 0.00000 0.00000" xyz="-0.00000 0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.028.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="flhipmotor_link">
+    <collision name="flhipmotor_collision">
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 -0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.112.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.00001" ixy="0.00000" ixz="-0.00000" iyy="0.00000" iyz="-0.00000" izz="0.00000"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00000 0.01248 0.00925"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="flhipmotor">
+      <material name="silver"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 -0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.112.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="flhipmotorplate_link">
+    <inertial>
+      <inertia ixx="0.0001" ixy="0.00000" ixz="-0.00000" iyy="0.0001" iyz="-0.00000" izz="0.0001"/>
+
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00000 -0.00000 -0.00032"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="flhipmotorplate">
+      <material name="silver"/>
+      <origin rpy="1.57080 0.00000 0.00000" xyz="0.00000 -0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.113.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="flhip_link">
+    <collision name="flhip_collision">
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00000 0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.108.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.00001" ixy="0.00000" ixz="0.00000" iyy="0.00001" iyz="0.00000" izz="0.00001"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00344 0.00011 -0.00107"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="flhip">
+      <material name="silver"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00000 0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.108.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="fllowerlegmotor_link">
+    <collision name="fllowerlegmotor_collision">
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00000 -0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.109.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.00000" ixy="0.00000" ixz="-0.00000" iyy="0.00000" iyz="-0.00000" izz="0.00001"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.01248 0.00925 -0.00000"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="fllowerlegmotor">
+      <material name="silver"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00000 -0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.109.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="blupperlegmotor_link">
+    <collision name="blupperlegmotor_collision">
+      <origin rpy="-0.00000 0.00000 0.00000" xyz="-0.00000 -0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.080.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.00000" ixy="-0.00000" ixz="0.00000" iyy="0.00000" iyz="-0.00000" izz="0.00001"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.01248 -0.00925 -0.00000"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="blupperlegmotor">
+      <material name="silver"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 -0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.080.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="flupperlegmotor_link">
+    <collision name="flupperlegmotor_collision">
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00000 0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.110.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.00000" ixy="-0.00000" ixz="0.00000" iyy="0.00000" iyz="-0.00000" izz="0.00001"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.01248 -0.00925 0.00000"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="flupperlegmotor">
+      <material name="silver"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00000 0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.110.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="flupperlegmotorplate_link">
+    <collision name="flupperlegmotorplate_collision">
+      <origin rpy="3.14159 1.57080 3.14159" xyz="-0.00000 0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.103.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.00001" ixy="-0.00000" ixz="-0.00000" iyy="0.00001" iyz="-0.00000" izz="0.00001"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 -0.00000 -0.00032"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="flupperlegmotorplate">
+      <material name="silver"/>
+      <origin rpy="-0.00000 1.57080 0.00000" xyz="-0.00000 0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.103.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="flupperleg_link">
+    <collision name="flupperleg_collision">
+      <origin rpy="0.00000 -0.00000 0.00000" xyz="-0.00000 0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.094.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.00002" ixy="-0.00000" ixz="0.00000" iyy="0.00001" iyz="0.00001" izz="0.00001"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00130 0.01309 -0.01444"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="flupperleg">
+      <material name="silver"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00000 0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.094.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="flpart1_link">
+    <collision name="flpart1_collision">
+      <origin rpy="3.14159 1.57080 3.14159" xyz="0.00554 -0.01154 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.096.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.00001" ixy="-0.00000" ixz="-0.00000" iyy="0.00001" iyz="-0.00000" izz="0.00001"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00277 -0.00558 0.00052"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="flpart1">
+      <material name="silver"/>
+      <origin rpy="-0.00000 1.57080 0.00000" xyz="0.00554 -0.01154 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.096.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="flpin1_link">
+    <collision name="flpin1_collision">
+      <origin rpy="0.00000 -0.00000 0.00000" xyz="-0.00000 0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.114.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.0001" ixy="0.00000" ixz="0.00000" iyy="0.0001" iyz="0.00000" izz="0.0001"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00230 0.00000 0.00000"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="flpin1">
+      <material name="silver"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00000 0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.114.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="flpart2_link">
+    <collision name="flpart2_collision">
+      <origin rpy="0.00000 -0.00000 0.00000" xyz="-0.00000 0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.098.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.00001" ixy="-0.00000" ixz="-0.00000" iyy="0.00001" iyz="-0.00000" izz="0.00001"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 -0.00120 -0.00290"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="flpart2">
+      <material name="silver"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00000 0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.098.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="flpart3_link">
+    <collision name="flpart3_collision">
+      <origin rpy="0.00000 -0.00000 0.00000" xyz="-0.00000 0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.097.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.00001" ixy="-0.00000" ixz="-0.00000" iyy="0.00001" iyz="-0.00000" izz="0.00001"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00000 0.00000 -0.00000"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="flpart3">
+      <material name="silver"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00000 0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.097.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="flpart4_link">
+    <collision name="flpart4_collision">
+      <origin rpy="0.00000 -0.00000 0.00000" xyz="-0.00000 -0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.100.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.00000" ixy="0.00000" ixz="0.00000" iyy="0.00000" iyz="-0.00000" izz="0.00000"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 0.00120 0.00290"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="flpart4">
+      <material name="silver"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 -0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.100.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="flpin2_link">
+    <collision name="flpin2_collision">
+      <origin rpy="0.00000 -0.00000 0.00000" xyz="-0.00000 0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.115.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.00001" ixy="-0.00000" ixz="-0.00000" iyy="0.00001" iyz="-0.00000" izz="0.00001"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00291 -0.00000 0.00000"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="flpin2">
+      <material name="silver"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00000 0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.115.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="flpart5_link">
+    <collision name="flpart5_collision">
+      <origin rpy="-0.00000 1.57080 0.00000" xyz="0.01133 -0.00172 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.102.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.00001" ixy="0.00000" ixz="0.00000" iyy="0.00001" iyz="0.00000" izz="0.00001"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.02025 -0.00201 0.00133"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="flpart5">
+      <material name="silver"/>
+      <origin rpy="-0.00000 1.57080 0.00000" xyz="0.01133 -0.00172 -0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.102.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="blupperlegmotorplate_link">
+    <collision name="blupperlegmotorplate_collision">
+      <origin rpy="-3.14159 -0.00000 -3.14159" xyz="-0.00000 0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.073.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.00001" ixy="-0.00000" ixz="-0.00000" iyy="0.00001" iyz="-0.00000" izz="0.00001"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00000 -0.00000 -0.00032"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="blupperlegmotorplate">
+      <material name="silver"/>
+      <origin rpy="-0.00000 1.57080 0.00000" xyz="-0.00000 0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.073.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="flpin3_link">
+    <collision name="flpin3_collision">
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00000 -0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.116.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.00001" ixy="-0.00000" ixz="-0.00000" iyy="0.00001" iyz="-0.00000" izz="0.00001"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00291 0.00000 -0.00000"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="flpin3">
+      <material name="silver"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00000 -0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.116.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="flpart6_link">
+    <collision name="flpart6_collision">
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 -0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.105.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.00001" ixy="-0.00000" ixz="-0.00000" iyy="0.00001" iyz="-0.00000" izz="0.00001"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00000 -0.00376 0.00457"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="flpart6">
+      <material name="silver"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 -0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.105.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="flpart7.1_link">
+    <collision name="flpart7.1_collision">
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00000 0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.104.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.0001" ixy="0.00000" ixz="0.00000" iyy="0.0001" iyz="0.00000" izz="0.0001"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 0.00000 -0.00000"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="flpart7.1">
+      <material name="silver"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00000 -0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.104.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="flpart7.2_link">
+    <collision name="flpart7.2_collision">
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00000 -0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.106.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.00001" ixy="0.00000" ixz="0.00000" iyy="0.00001" iyz="0.00000" izz="0.00001"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 0.00000 0.00000"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="flpart7.2">
+      <material name="silver"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00000 -0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.106.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="flpart8_link">
+    <collision name="flpart8_collision">
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 -0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.107.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.00001" ixy="-0.00000" ixz="-0.00000" iyy="0.00001" iyz="-0.00000" izz="0.00001"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00000 0.00376 -0.00457"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="flpart8">
+      <material name="silver"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 -0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.107.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="flpin4_link">
+    <collision name="flpin4_collision">
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 -0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.121.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.0001" ixy="0.00000" ixz="-0.00000" iyy="0.0001" iyz="-0.00000" izz="0.0001"/>
+
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00205 -0.00000 0.00000"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="flpin4">
+      <material name="silver"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 -0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.121.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="flpin5_link">
+    <collision name="flpin5_collision">
+      <origin rpy="0.00000 -1.57080 0.00000" xyz="-0.00000 0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.122.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.0001" ixy="0.00000" ixz="-0.00000" iyy="0.0001" iyz="-0.00000" izz="0.0001"/>
+
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00000 0.00000 -0.00201"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="flpin5">
+      <material name="silver"/>
+      <origin rpy="0.00000 -1.57080 0.00000" xyz="-0.00000 0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.122.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="fllowerleg_link">
+    <collision name="fllowerleg_collision">
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00000 0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.095.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.00002" ixy="0.00000" ixz="0.00000" iyy="0.00001" iyz="-0.00001" izz="0.00001"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00075 0.00203 0.00418"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="fllowerleg">
+      <material name="silver"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 -0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.095.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="flcap_link">
+    <collision name="flcap_collision">
+      <origin rpy="-0.17977 0.00000 -0.00000" xyz="-0.00000 0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.123.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.00001" ixy="-0.00000" ixz="-0.00000" iyy="0.00001" iyz="-0.00000" izz="0.00001"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00000 0.00010 -0.00075"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="flcap">
+      <material name="silver"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00000 0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.123.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="flpin6.1_link">
+    <collision name="flpin6.1_collision">
+      <origin rpy="0.00000 -0.00000 0.00000" xyz="-0.00000 0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.117.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.00001" ixy="-0.00000" ixz="-0.00000" iyy="0.00001" iyz="-0.00000" izz="0.00001"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00223 0.00000 -0.00000"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="flpin6.1">
+      <material name="silver"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.117.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="blupperleg_link">
+    <collision name="blupperleg_collision">
+      <origin rpy="-0.00000 -0.00000 0.00000" xyz="-0.00000 0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.064.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.00002" ixy="-0.00000" ixz="0.00000" iyy="0.00001" iyz="0.00001" izz="0.00001"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00130 0.01309 -0.01444"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="blupperleg">
+      <material name="silver"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00000 0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.064.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="flpin6.2_link">
+    <collision name="flpin6.2_collision">
+      <origin rpy="0.00000 -0.00000 0.00000" xyz="-0.00000 0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.118.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.00001" ixy="-0.00000" ixz="-0.00000" iyy="0.00001" iyz="-0.00000" izz="0.00001"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00223 0.00000 -0.00000"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="flpin6.2">
+      <material name="silver"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.118.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="flpin6.3_link">
+    <collision name="flpin6.3_collision">
+      <origin rpy="0.00000 -0.00000 0.00000" xyz="-0.00000 0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.119.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.00001" ixy="-0.00000" ixz="-0.00000" iyy="0.00001" iyz="-0.00000" izz="0.00001"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00223 0.00000 -0.00000"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="flpin6.3">
+      <material name="silver"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.119.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="flpin6.4_link">
+    <collision name="flpin6.4_collision">
+      <origin rpy="0.00000 -0.00000 0.00000" xyz="-0.00000 0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.120.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.00001" ixy="-0.00000" ixz="-0.00000" iyy="0.00001" iyz="-0.00000" izz="0.00001"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00223 0.00000 -0.00000"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="flpin6.4">
+      <material name="silver"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.120.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="frhipmotor_link">
+    <collision name="frhipmotor_collision">
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00000 0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.047.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.00001" ixy="-0.00000" ixz="0.00000" iyy="0.00000" iyz="-0.00000" izz="0.00000"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 0.01248 0.00925"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="frhipmotor">
+      <material name="silver"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00000 0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.047.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="frhipmotorplate_link">
+    <collision name="frhipmotorplate_collision">
+      <origin rpy="1.57080 0.00000 0.00000" xyz="0.00000 0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.048.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.00001" ixy="-0.00000" ixz="-0.00000" iyy="0.00001" iyz="-0.00000" izz="0.00001"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 -0.00000 -0.00032"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="frhipmotorplate">
+      <material name="silver"/>
+      <origin rpy="1.57080 0.00000 0.00000" xyz="0.00000 0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.048.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="frhip_link">
+    <collision name="frhip_collision">
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.043.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.0001" ixy="0.00000" ixz="0.00000" iyy="0.0001" iyz="0.00000" izz="0.0001"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00344 0.00011 -0.00107"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="frhip">
+      <material name="silver"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 -0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.043.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="frlowerlegmotor_link">
+    <collision name="frlowerlegmotor_collision">
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00000 0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.044.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.00000" ixy="-0.00000" ixz="0.00000" iyy="0.00000" iyz="-0.00000" izz="0.00001"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.01248 0.00925 -0.00000"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="frlowerlegmotor">
+      <material name="silver"/>
+      <origin rpy="-0.00000 0.00000 0.00000" xyz="-0.00000 -0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.044.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="frupperlegmotor_link">
+    <collision name="frupperlegmotor_collision">
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 -0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.045.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.00000" ixy="0.00000" ixz="-0.00000" iyy="0.00000" iyz="-0.00000" izz="0.00001"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.01248 -0.00925 0.00000"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="frupperlegmotor">
+      <material name="silver"/>
+      <origin rpy="-0.00000 0.00000 0.00000" xyz="0.00000 -0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.045.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="frupperlegmotorplate_link">
+    <collision name="frupperlegmotorplate_collision">
+      <origin rpy="0.00000 -1.57080 0.00000" xyz="-0.00000 0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.038.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.0001" ixy="0.00000" ixz="-0.00000" iyy="0.0001" iyz="-0.00000" izz="0.0001"/>
+
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00000 0.00000 -0.00032"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="frupperlegmotorplate">
+      <material name="silver"/>
+      <origin rpy="0.00000 -1.57080 0.00000" xyz="-0.00000 0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.038.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="frupperleg_link">
+    <collision name="frupperleg_collision">
+      <origin rpy="0.00000 0.00000 -0.00000" xyz="0.00000 0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.029.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.00002" ixy="0.00000" ixz="-0.00000" iyy="0.00001" iyz="0.00001" izz="0.00001"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00130 0.01309 -0.01444"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="frupperleg">
+      <material name="silver"/>
+      <origin rpy="-0.00000 0.00000 0.00000" xyz="0.00000 0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.029.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="blpart1_link">
+    <collision name="blpart1_collision">
+      <origin rpy="-0.00000 1.57080 0.00000" xyz="0.00550 -0.01163 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.066.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.00001" ixy="-0.00000" ixz="-0.00000" iyy="0.00001" iyz="-0.00000" izz="0.00001"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00272 -0.00567 0.00052"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="blpart1">
+      <material name="silver"/>
+      <origin rpy="-0.00000 1.57080 0.00000" xyz="0.00550 -0.01163 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.066.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="frpart1_link">
+    <collision name="frpart1_collision">
+      <origin rpy="0.00000 -1.57080 -0.00000" xyz="-0.00559 -0.01163 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.031.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.00001" ixy="-0.00000" ixz="-0.00000" iyy="0.00001" iyz="-0.00000" izz="0.00001"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00282 -0.00567 0.00052"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="frpart1">
+      <material name="silver"/>
+      <origin rpy="-0.00000 -1.57080 0.00000" xyz="-0.00559 -0.01163 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.031.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="frpin1_link">
+    <collision name="frpin1_collision">
+      <origin rpy="-0.00000 0.00000 0.00000" xyz="0.00000 0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.049.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.00001" ixy="-0.00000" ixz="-0.00000" iyy="0.00001" iyz="-0.00000" izz="0.00001"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00230 0.00000 0.00000"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="frpin1">
+      <material name="silver"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 -0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.049.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="frpart2_link">
+    <collision name="frpart2_collision">
+      <origin rpy="-0.00000 -0.00000 0.00000" xyz="0.00000 0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.033.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.00000" ixy="0.00000" ixz="0.00000" iyy="0.00000" iyz="-0.00000" izz="0.00000"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00000 -0.00120 -0.00290"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="frpart2">
+      <material name="silver"/>
+      <origin rpy="0.00000 0.00000 -0.00000" xyz="-0.00000 -0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.033.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="frpart3_link">
+    <collision name="frpart3_collision">
+      <origin rpy="-0.00000 -0.00000 0.00000" xyz="0.00000 -0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.032.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.00000" ixy="0.00000" ixz="0.00000" iyy="0.00000" iyz="-0.00000" izz="0.00000"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 0.00000 -0.00000"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="frpart3">
+      <material name="silver"/>
+      <origin rpy="-0.00000 0.00000 0.00000" xyz="0.00000 -0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.032.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="frpart4_link">
+    <collision name="frpart4_collision">
+      <origin rpy="-0.00000 -0.00000 0.00000" xyz="-0.00000 0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.035.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.00001" ixy="-0.00000" ixz="-0.00000" iyy="0.00001" iyz="-0.00000" izz="0.00001"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00000 0.00120 0.00290"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="frpart4">
+      <material name="silver"/>
+      <origin rpy="0.00000 0.00000 -0.00000" xyz="-0.00000 0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.035.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="frpin2_link">
+    <collision name="frpin2_collision">
+      <origin rpy="-0.00000 -0.00000 0.00000" xyz="0.00000 0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.050.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.0001" ixy="0.00000" ixz="0.00000" iyy="0.0001" iyz="0.00000" izz="0.0001"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00250 -0.00000 -0.00000"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="frpin2">
+      <material name="silver"/>
+      <origin rpy="-0.00000 0.00000 -0.00000" xyz="0.00000 0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.050.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="frpart5_link">
+    <collision name="frpart5_collision">
+      <origin rpy="0.00000 -1.57080 0.00000" xyz="-0.01134 -0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.037.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.0001" ixy="0.00000" ixz="0.00000" iyy="0.0001" iyz="0.00000" izz="0.0001"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.02026 -0.00029 0.00133"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="frpart5">
+      <material name="silver"/>
+      <origin rpy="-0.00000 -1.57080 0.00000" xyz="-0.01134 -0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.037.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="frpin3_link">
+    <collision name="frpin3_collision">
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.051.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.00001" ixy="-0.00000" ixz="-0.00000" iyy="0.00001" iyz="-0.00000" izz="0.00001"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00250 -0.00000 -0.00000"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="frpin3">
+      <material name="silver"/>
+      <origin rpy="0.00000 0.00000 -0.00000" xyz="0.00000 -0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.051.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="frpart6_link">
+    <collision name="frpart6_collision">
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00000 -0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.040.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.00001" ixy="-0.00000" ixz="-0.00000" iyy="0.00001" iyz="-0.00000" izz="0.00001"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 -0.00376 0.00457"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="frpart6">
+      <material name="silver"/>
+      <origin rpy="-0.00000 0.00000 0.00000" xyz="-0.00000 -0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.040.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="frpart7.1_link">
+    <collision name="frpart7.1_collision">
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.039.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.00001" ixy="0.00000" ixz="0.00000" iyy="0.00001" iyz="0.00000" izz="0.00001"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00000 0.00000 -0.00000"/>
+      <mass value="0.1000"/>
+    </inertial>
+    <visual name="frpart7.1">
+      <material name="silver"/>
+      <origin rpy="0.00000 0.00000 -0.00000" xyz="0.00000 0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/RobotDog3.039.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="lidar_link">
+    <visual name="lidar">
+      <material name="silver"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 -0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="file://$(find project)/meshes/stl/Cylinder.stl" scale="1.00000 1.00000 1.00000"/>
+      </geometry>
+    </visual>
+  </link>
+  <material name="silver">
+    <color rgba="0.80000 0.80000 0.80000 1.00000"/>
+  </material>
+  <ros2_control name="GazeboSystem" type="system">
+    <hardware>
+      <plugin>gz_ros2_control/GazeboSimSystem</plugin>
+    </hardware>
+
+    <!-- Hip Joints (4 actuated) -->
+    <joint name="blhipmotorplate_link_joint">
+      <command_interface name="position">
+      </command_interface>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+
+    <joint name="brhipmotorplate_link_joint">
+      <command_interface name="position">
+      </command_interface>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+
+    <joint name="flhipmotorplate_link_joint">
+      <command_interface name="position">
+      </command_interface>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+
+    <joint name="frhipmotorplate_link_joint">
+      <command_interface name="position">
+      </command_interface>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+
+    <!-- Upper Leg Joints (4 actuated) -->
+    <joint name="blupperlegmotorplate_link_joint">
+      <command_interface name="position">
+      </command_interface>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+
+    <joint name="brupperlegmotoplate_link_joint">
+      <command_interface name="position">
+      </command_interface>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+
+    <joint name="flupperlegmotorplate_link_joint">
+      <command_interface name="position">
+      </command_interface>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+
+    <joint name="frupperlegmotorplate_link_joint">
+      <command_interface name="position">
+      </command_interface>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+
+    <!-- Part1/Knee Joints (4 actuated - these control the mimicked joints) -->
+    <joint name="blpart1_link_joint">
+      <command_interface name="position">
+      </command_interface>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+
+    <joint name="brpart1_link_joint">
+      <command_interface name="position">
+      </command_interface>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+
+    <joint name="flpart1_link_joint">
+      <command_interface name="position">
+      </command_interface>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+
+    <joint name="frpart1_link_joint">
+      <command_interface name="position">
+      </command_interface>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+
+  </ros2_control>
+  <gazebo>
+    <plugin filename="gz_ros2_control-system" name="gz_ros2_control::GazeboSimROS2ControlPlugin">
+    <parameters>$(find project)/config/controllers.yaml</parameters>
+    </plugin>
+  </gazebo>
+  
+  <gazebo reference="lidar_link">
+    <sensor name="lidar" type="gpu_lidar">
+      <always_on>true</always_on>
+      <update_rate>10</update_rate>
+      <topic>/lidar</topic>
+      <frame_id>lidar_link</frame_id>
+      <gz_frame_id>lidar_link</gz_frame_id>
+      <lidar>
+        <scan>
+          <horizontal>
+            <samples>1080</samples>
+            <resolution>1</resolution>
+            <min_angle>-3.14159</min_angle>
+            <max_angle>3.14159</max_angle>
+          </horizontal>
+          <vertical>
+            <samples>64</samples>       
+            <resolution>1</resolution>
+            <min_angle>-0.2618</min_angle>
+            <max_angle>0.2618</max_angle>
+          </vertical>
+        </scan>
+        <range>
+          <min>0.12</min>
+          <max>30.0</max>
+          <resolution>0.01</resolution>
+        </range>
+        <noise>
+          <type>gaussian</type>
+          <mean>0.0</mean>
+          <stddev>0.01</stddev>
+        </noise>
+      </lidar>
+    </sensor>
+  </gazebo>
+</robot>

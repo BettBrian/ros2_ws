@@ -1,86 +1,135 @@
-#!/usr/bin/env python3
 import os
 from launch import LaunchDescription
-from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription
-from launch.substitutions import LaunchConfiguration
+from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription, TimerAction, RegisterEventHandler, SetEnvironmentVariable
+from launch.event_handlers import OnProcessExit
+from launch.substitutions import LaunchConfiguration, PathJoinSubstitution
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch_ros.actions import Node
+from launch_ros.substitutions import FindPackageShare
 from ament_index_python.packages import get_package_share_directory
 
 def generate_launch_description():
     package_name = 'project'
-    pkg_share = get_package_share_directory(package_name)
-    world_path = os.path.join(pkg_share, 'world', 'empty.world')
-
+    
+    # Get package paths
+    pkg_share_path = get_package_share_directory(package_name)
+    
+    # Set Gazebo resource paths
+    gz_resource_path = SetEnvironmentVariable(
+        name='GZ_SIM_RESOURCE_PATH',
+        value=os.pathsep.join([
+            pkg_share_path,
+            os.path.join(pkg_share_path, 'meshes'),
+            os.environ.get('GZ_SIM_RESOURCE_PATH', '')
+        ])
+    )
+    
+    pkg_share = FindPackageShare(package_name)
+    world_path = PathJoinSubstitution([pkg_share, 'world', 'empty.sdf'])
+    controllers_path = PathJoinSubstitution([pkg_share, 'config', 'controllers.yaml'])
+    
     use_sim_time = LaunchConfiguration('use_sim_time')
+    
     declare_use_sim_time = DeclareLaunchArgument(
         'use_sim_time',
         default_value='true',
         description='Use simulation (Gazebo) clock'
     )
-
+    
+    # Robot State Publisher
     rsp = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource(os.path.join(pkg_share, 'launch', 'rsp.launch.py')),
-        launch_arguments={'use_sim_time': use_sim_time,
-                          'use_ros2_control': 'false'
-                          }.items()
+        PythonLaunchDescriptionSource(
+            PathJoinSubstitution([pkg_share, 'launch', 'rsp.launch.py'])
+        ),
+        launch_arguments={
+            'use_sim_time': use_sim_time,
+            'use_ros2_control': 'true'
+        }.items()
     )
-
+    
+    # Gazebo
     gazebo_launch = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
-            os.path.join(get_package_share_directory('ros_gz_sim'), 'launch', 'gz_sim.launch.py')
+            PathJoinSubstitution([
+                FindPackageShare('ros_gz_sim'),
+                'launch',
+                'gz_sim.launch.py'
+            ])
         ),
-        launch_arguments={'gz_args': f'-r -v 4 {world_path}'}.items()
+        launch_arguments={'gz_args': ['-r -v 4 ', world_path]}.items()
     )
-
+    
+    # Spawn Robot
     spawn_entity = Node(
         package='ros_gz_sim',
         executable='create',
-        arguments=['-topic', 'robot_description', '-name', 'quad', '-z', '0.5'],
+        arguments=[
+            '-topic', 'robot_description',
+            '-name', 'quadped',
+            '-z', '0.3'
+        ],
         output='screen'
     )
-
+    
+    # Gazebo Bridge
     gz_bridge = Node(
         package='ros_gz_bridge',
         executable='parameter_bridge',
         arguments=[
             '/clock@rosgraph_msgs/msg/Clock[gz.msgs.Clock',
-            '/scan/points@sensor_msgs/msg/PointCloud2[gz.msgs.PointCloudPacked',
-            '/model/quad/odometry@nav_msgs/msg/Odometry[gz.msgs.Odometry',
-            '/model/quad/tf@tf2_msgs/msg/TFMessage[gz.msgs.Pose_V',
             '/cmd_vel@geometry_msgs/msg/Twist]gz.msgs.Twist',
-            '/world/test_industry/model/quad/joint_state@sensor_msgs/msg/JointState[gz.msgs.Model'
-        ],
-        remappings=[
-            ('/scan/points', '/points'),
-            ('/world/test_industry/model/quad/joint_state', '/joint_states'),
-            ('/model/quad/odometry', '/odom'),
-            ('/model/quad/tf', '/tf')
+            '/odometry@nav_msgs/msg/Odometry@gz.msgs.Odometry',
+            '/lidar/points@sensor_msgs/msg/PointCloud2[gz.msgs.PointCloudPacked',
         ],
         parameters=[{'use_sim_time': use_sim_time}],
         output='screen'
+
     )
 
-    fix_lidar_tf = Node(
-    package='tf2_ros',
-    executable='static_transform_publisher',
-    name='fix_lidar_frame',
-    arguments=[
-        '0', '0', '0',   # x y z
-        '0', '0', '0',   # qx qy qz
-        '1',             # qw
-        'odom',    # parent
-        'quad/base_link/lidar'  # child
-    ],
-    output='screen'
+    # Joint State Broadcaster Spawner (DELAYED)
+    joint_state_broadcaster_spawner = Node(
+        package='controller_manager',
+        executable='spawner',
+        arguments=[
+            'joint_state_broadcaster',
+            '--controller-manager', '/controller_manager',
+            '--controller-manager-timeout', '120'
+        ],
+        output='screen'
     )
-
-
+    
+    # Position Controller Spawner (DELAYED)
+    position_controller_spawner = Node(
+        package='controller_manager',
+        executable='spawner',
+        arguments=[
+            'position_controller',
+            '--controller-manager', '/controller_manager',
+            '--controller-manager-timeout', '120'
+        ],
+        output='screen'
+    )
+    
+    # Delay spawners
+    delayed_joint_state_broadcaster = TimerAction(
+        period=5.0,
+        actions=[joint_state_broadcaster_spawner]
+    )
+    
+    delayed_position_controller = RegisterEventHandler(
+        event_handler=OnProcessExit(
+            target_action=joint_state_broadcaster_spawner,
+            on_exit=[position_controller_spawner],
+        )
+    )
+    
     return LaunchDescription([
+        gz_resource_path,
         declare_use_sim_time,
         rsp,
         gazebo_launch,
         spawn_entity,
         gz_bridge,
-        fix_lidar_tf
+        delayed_joint_state_broadcaster,
+        delayed_position_controller,
     ])
