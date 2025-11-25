@@ -1,100 +1,80 @@
 #!/usr/bin/env python3
-# FINAL_WITH_REVERSED_SHOULDER_MOTORS.py
-# 100% correct for your robot:
-# - Left knees reversed
-# - ALL shoulder motors reversed (positive command = backward rotation)
-# - Real upper leg lift
-# - Big, fast, symmetric, beautiful walk
-
 import rclpy
 from rclpy.node import Node
 from std_msgs.msg import Float64MultiArray
 import math
 
-class FinalCorrectWalk(Node):
+class FinalCorrectedWalk(Node):
     def __init__(self):
-        super().__init__('final_correct_walk')
+        super().__init__('final_corrected_walk')
         self.pub = self.create_publisher(Float64MultiArray, '/position_controller/commands', 10)
 
-        self.base = 0.0
-        self.body_pitch = 0.20
+        # --- GAIT SETTINGS ---
+        self.speed = 4.0            
+        self.shoulder_amp = 0.8     
+        self.knee_amp = 0.8         
+        self.shoulder_offset = 0.0  
+        self.knee_offset = 0.0      
 
-        self.max_foot_lift   = 0.07
-        self.max_stride      = 0.22
-        self.cycle_time      = 1.05
-        self.warmup_time     = 8.0
-        self.upper_leg_lift_amplitude = 0.50   # rad ≈ 29°
+        # --- KNEE POLARITY FIX ---
+        # Changed all to -1.0 based on your feedback.
+        # If one specific side is now wrong (e.g. Left bends up but Right bends down),
+        # change ONLY that side back to 1.0.
+        self.knee_polarity = {
+            'BL': -1.0,  # Back Left
+            'BR': -1.0,  # Back Right
+            'FL': -1.0,  # Front Left
+            'FR': -1.0   # Front Right
+        }
 
         self.timer = self.create_timer(0.02, self.update)
         self.t0 = self.get_clock().now()
-        self.get_logger().info("FINAL CORRECT WALK — ALL MOTORS FIXED (shoulders reversed)")
+        self.get_logger().info("STARTING: Walk with INVERTED Knees")
 
     def update(self):
         t = (self.get_clock().now() - self.t0).nanoseconds / 1e9
-        ramp = min(t / self.warmup_time, 1.0)
-        ease = 0.5 * (1 - math.cos(ramp * math.pi))
+        
+        # Master Wave
+        wave = math.sin(t * self.speed)
 
-        lift   = self.max_foot_lift   * ease
-        stride = self.max_stride      * ease
-        pitch  = self.body_pitch      * ease
+        # 1. SHOULDERS (All Negative, as confirmed previously)
+        shoulder_cmd = self.shoulder_offset - (wave * self.shoulder_amp)
 
-        phase = (t / self.cycle_time) * 2 * math.pi
-        p1 = phase
-        p2 = phase + math.pi
+        # 2. KNEES (Lift Logic)
+        # Lift Group 1 when wave is POSITIVE
+        lift_group_1 = max(0, wave) * self.knee_amp
+        
+        # Lift Group 2 when wave is NEGATIVE
+        lift_group_2 = max(0, -wave) * self.knee_amp
 
-        def traj(p):
-            p = p % (2*math.pi)
-            if p < math.pi:
-                prog = p / math.pi
-                h = math.sin(prog * math.pi)
-                f = prog - 0.5
-            else:
-                prog = (p - math.pi) / math.pi
-                h = 0.0
-                f = 0.5 - prog
-            return h, f
+        cmd = [0.0] * 12
 
-        h1, f1 = traj(p1)   # FL + BR
-        h2, f2 = traj(p2)   # FR + BL
+        # --- GROUP 1: Front Left & Back Right ---
+        # FL (Index 6 & 10)
+        cmd[6] = shoulder_cmd
+        cmd[10] = self.knee_offset + (lift_group_1 * self.knee_polarity['FL'])
 
-        shoulder = [self.base + pitch] * 4
-        knee     = [self.base] * 4
+        # BR (Index 5 & 9)
+        cmd[5] = shoulder_cmd
+        cmd[9] = self.knee_offset + (lift_group_1 * self.knee_polarity['BR'])
 
-        lift_scale   = self.upper_leg_lift_amplitude * ease
-        forward_scale = 1.25
-        knee_scale   = 11.0
+        # --- GROUP 2: Front Right & Back Left ---
+        # FR (Index 7 & 11)
+        cmd[7] = shoulder_cmd
+        cmd[11] = self.knee_offset + (lift_group_2 * self.knee_polarity['FR'])
 
-        # THE FIX: ALL shoulder motors are reversed → we send NEGATIVE values
-        # Left knees also reversed → already handled with minus sign
+        # BL (Index 4 & 8)
+        cmd[4] = shoulder_cmd
+        cmd[8] = self.knee_offset + (lift_group_2 * self.knee_polarity['BL'])
 
-        # FL + BR pair
-        shoulder[2] -= (f1 * stride * forward_scale + h1 * lift_scale)   # FL shoulder reversed
-        knee[2]     -= h1 * lift * knee_scale                            # FL knee reversed (left)
-
-        shoulder[1] -= (f1 * stride * forward_scale + h1 * lift_scale)   # BR shoulder reversed
-        knee[1]     += h1 * lift * knee_scale                            # BR knee normal
-
-        # FR + BL pair
-        shoulder[3] -= (f2 * stride * forward_scale + h2 * lift_scale)   # FR shoulder reversed
-        knee[3]     += h2 * lift * knee_scale                            # FR knee normal
-
-        shoulder[0] -= (f2 * stride * forward_scale + h2 * lift_scale)   # BL shoulder reversed
-        knee[0]     -= h2 * lift * knee_scale                            # BL knee reversed (left)
-
-        # Exact order from your corrected YAML (motoplate fixed)
-        cmd = [0.0]*4 + [
-            shoulder[0], shoulder[1], shoulder[2], shoulder[3],   # BL, BR, FL, FR shoulders
-            knee[0],     knee[1],     knee[2],     knee[3]        # BL, BR, FL, FR knees
-        ]
         self.pub.publish(Float64MultiArray(data=cmd))
 
 def main():
     rclpy.init()
-    node = FinalCorrectWalk()
+    node = FinalCorrectedWalk()
     try:
         rclpy.spin(node)
     except KeyboardInterrupt:
-        node.get_logger().info("Stopped → perfect stand")
         node.pub.publish(Float64MultiArray(data=[0.0]*12))
     finally:
         rclpy.shutdown()

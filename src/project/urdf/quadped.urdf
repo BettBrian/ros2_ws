@@ -1,4 +1,9 @@
 <robot name="quadped" version="1.0">
+  <joint name="Camera_link_joint" type="fixed">
+    <origin rpy="1.57080 -1.57080 0.00000" xyz="0.05046 -0.18221 0.00592"/>
+    <parent link="baselink_link"/>
+    <child link="Camera_link"/>
+  </joint>
   <joint name="backplate_link_joint" type="fixed">
     <origin rpy="0.00000 0.00000 0.00000" xyz="0.05020 0.17534 0.00102"/>
     <parent link="baselink_link"/>
@@ -1391,6 +1396,15 @@
       <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 -0.00000 0.00000"/>
       <geometry>
         <mesh filename="file://$(find project)/meshes/stl/RobotDog3.014.stl" scale="0.00100 0.00100 0.00100"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="Camera_link">
+    <visual name="Camera">
+      <material name="silver"/>
+      <origin rpy="-0.00000 0.00000 0.00000" xyz="0.00000 -0.00000 0.00000"/>
+      <geometry>
+        <cylinder radius="0.01355" length="0.00741"/>
       </geometry>
     </visual>
   </link>
@@ -3018,6 +3032,27 @@
           <stddev>0.01</stddev>
         </noise>
       </lidar>
+    </sensor>
+  </gazebo>
+
+  <gazebo reference="Camera_link">
+    <sensor name="Cam" type="camera">
+    <always_on>true</always_on>
+    <visualize>true</visualize>
+    <update_rate>30</update_rate>
+    <topic>camera/image_raw</topic>
+      <camera>
+        <image>
+          <format>R8G8B8</format>
+          <width>640</width>
+          <height>480</height>
+          <hfov>1.57080</hfov>
+        </image>
+        <clip>
+          <near>0.05</near>
+          <far>8.0</far>
+        </clip>
+      </camera>
     </sensor>
   </gazebo>
 </robot>

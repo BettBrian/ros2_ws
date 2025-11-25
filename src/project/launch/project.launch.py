@@ -80,8 +80,9 @@ def generate_launch_description():
             '/cmd_vel@geometry_msgs/msg/Twist]gz.msgs.Twist',
             '/odometry@nav_msgs/msg/Odometry@gz.msgs.Odometry',
             '/lidar/points@sensor_msgs/msg/PointCloud2[gz.msgs.PointCloudPacked',
+            '/camera/image_raw@sensor_msgs/msg/Image[gz.msgs.Image',
         ],
-        parameters=[{'use_sim_time': use_sim_time}],
+        parameters=[{'use_sim_ time': use_sim_time}],
         output='screen'
 
     )
