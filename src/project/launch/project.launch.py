@@ -26,6 +26,9 @@ def generate_launch_description():
     
     pkg_share = FindPackageShare(package_name)
     world_path = PathJoinSubstitution([pkg_share, 'world', 'empty.sdf'])
+    
+    # --- CONFIGURATION CHECK ---
+    # Ensure this file exists and defines 'position_controller'
     controllers_path = PathJoinSubstitution([pkg_share, 'config', 'controllers.yaml'])
     
     use_sim_time = LaunchConfiguration('use_sim_time')
@@ -82,9 +85,9 @@ def generate_launch_description():
             '/lidar/points@sensor_msgs/msg/PointCloud2[gz.msgs.PointCloudPacked',
             '/camera/image_raw@sensor_msgs/msg/Image[gz.msgs.Image',
         ],
-        parameters=[{'use_sim_ time': use_sim_time}],
+        # FIXED TYPO HERE: 'use_sim_ time' -> 'use_sim_time'
+        parameters=[{'use_sim_time': use_sim_time}],
         output='screen'
-
     )
 
     # Joint State Broadcaster Spawner (DELAYED)
@@ -104,16 +107,17 @@ def generate_launch_description():
         package='controller_manager',
         executable='spawner',
         arguments=[
-            'position_controller',
+            'position_controller', # <--- THIS NAME MUST MATCH PYTHON SCRIPT
             '--controller-manager', '/controller_manager',
             '--controller-manager-timeout', '120'
         ],
         output='screen'
     )
+
     
     # Delay spawners
     delayed_joint_state_broadcaster = TimerAction(
-        period=5.0,
+        period=10.0,
         actions=[joint_state_broadcaster_spawner]
     )
     
@@ -123,6 +127,7 @@ def generate_launch_description():
             on_exit=[position_controller_spawner],
         )
     )
+
     
     return LaunchDescription([
         gz_resource_path,

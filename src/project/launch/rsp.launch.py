@@ -11,11 +11,11 @@ def generate_launch_description():
     pkg_share = get_package_share_directory('project')
     urdf_file = os.path.join(pkg_share, 'urdf', 'quadped.urdf')
     
-    # Read URDF and replace $(find project) with actual path
+    # Read URDF 
     with open(urdf_file, 'r') as f:
         robot_desc = f.read()
     
-    # Replace $(find project) with the actual package path
+    
     robot_desc = robot_desc.replace('$(find project)', pkg_share)
     
     use_sim_time = LaunchConfiguration('use_sim_time')

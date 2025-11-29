@@ -1,113 +1,111 @@
 #!/usr/bin/env python3
-# stable_single_leg_lift.py
-# This version leans the body toward the opposite tripod before lifting
-
 import rclpy
 from rclpy.node import Node
-from std_msgs.msg import Float64MultiArray
+from geometry_msgs.msg import Point
 import math
 
-class StableLegLift(Node):
+class SlowWalk(Node):
     def __init__(self):
-        super().__init__('stable_leg_lift')
+        super().__init__('slow_walk_commander')
+        
+        
+        # --- GAIT SETTINGS ---
+        self.stand_height = -0.5  # height
+        self.lift_height = 0.3   #  lift
+        self.stride_length = 0.3  # step
+        
+        self.speed = 0.5           
+        
+        # GAIT PATTERN: Crawl
+        self.swing_ratio = 0.5
+        
+        # --- FOOT HOME POSITIONS ---
+        self.foot_home = {
+            'fl': {'x': 0.1,  'y': 0.06},
+            'fr': {'x': 0.1,  'y': -0.06},
+            'bl': {'x': -0.1, 'y': 0.06},
+            'br': {'x': -0.1, 'y': -0.06}
+        }
+        
+        # --- TIMING OFFSETS ---
+        self.phase_offsets = {
+            'fl': 0.0,
+            'br': 0.25,
+            'fr': 0.50,
+            'bl': 0.75
+        }
 
-        self.pub = self.create_publisher(Float64MultiArray, '/position_controller/commands', 10)
+        self.pubs = {}
+        for leg in self.foot_home:
+            topic = f'/{leg}_foot_target'
+            self.pubs[leg] = self.create_publisher(Point, topic, 10)
 
-        # CHANGE THIS to test any leg safely
-        self.leg_to_lift = 'BR'        # Try 'FL', 'FR', 'BL', 'BR' – all stable now
+        # Use simulation time
+        self.start_time = self.get_clock().now()
+        self.timer = self.create_timer(0.02, self.update_gait)
+        
+        self.get_logger().info("="*50)
+        self.get_logger().info(f"WALK")
+        self.get_logger().info(f"Stand: {self.stand_height}m, Lift: {self.lift_height}m")
+        self.get_logger().info(f"Stride: {self.stride_length}m, Speed: {self.speed} Hz")
+        self.get_logger().info("="*50)
 
-        # Tuned neutral standing pose for your robot (you already found good values)
-        self.hip      = 0.0
-        self.shoulder = -0.4           # upper leg (negative = forward usually)
-        self.knee     = 0.
+    def get_trajectory(self, phase, home_x, home_y):
+        half_stride = self.stride_length / 2
+        
+        # --- SWING PHASE (Air) ---
+        if phase < self.swing_ratio:
+            swing_prog = phase / self.swing_ratio
+            
+            # X: Move from BACK to FRONT (Cosine for smooth acceleration)
+            x_pos = home_x - (math.cos(math.pi * swing_prog) * half_stride)
+            
+            # Z: Lift UP (Sine Arch)
+            z_pos = self.stand_height + (math.sin(math.pi * swing_prog) * self.lift_height)
+            
+        # --- STANCE PHASE (Ground) ---
+        else:
+            stance_prog = (phase - self.swing_ratio) / (1.0 - self.swing_ratio)
+            
+            # X: Move from FRONT to BACK (Linear slide)
+            x_pos = home_x + half_stride - (stance_prog * self.stride_length)
+            
+            # Z: Flat on ground
+            z_pos = self.stand_height
+            
+        return x_pos, home_y, z_pos
 
-        # How much we shift the body laterally and rotate to stay balanced
-        self.body_shift   = 0.25       # shoulder angle offset for the three support legs
-        self.hip_sway     = 0.25       # hip yaw to lean into the triangle
+    def update_gait(self):
+        # Use simulation time
+        current_time = self.get_clock().now()
+        elapsed_sec = (current_time - self.start_time).nanoseconds / 1e9
+        
+        # Global cycle (0.0 to 1.0 loops continuously)
+        cycle_progress = (elapsed_sec * self.speed) % 1.0
+        
+        for leg, home in self.foot_home.items():
+            # Calculate local phase for this leg
+            leg_phase = (cycle_progress + self.phase_offsets[leg]) % 1.0
+            
+            # Get Target
+            x, y, z = self.get_trajectory(leg_phase, home['x'], home['y'])
+            
+            # Publish
+            msg = Point()
+            msg.x = float(x)
+            msg.y = float(y)
+            msg.z = float(z)
+            self.pubs[leg].publish(msg)
 
-        self.timer = self.create_timer(0.08, self.update)  # ~12.5 Hz
-        self.step = 0
-        self.get_logger().info(f'Stable leg lift ready – will safely lift {self.leg_to_lift}')
-
-    def update(self):
-        t = (self.step % 100) / 50.0                  # 0 → 2 → 0 smooth cycle
-        lift = abs(math.sin(t * math.pi))             # 0 → 1 → 0
-
-        # Base neutral pose
-        pos = [self.hip]*4 + [self.shoulder]*4 + [self.knee]*4
-
-        # === 1. First, shift body over the supporting tripod ===
-        if self.leg_to_lift == 'BR':    # lifting back-right → lean toward FL-FR-BL triangle
-            pos[0]  += self.hip_sway      # BL hip yaw in
-            pos[2]  += self.hip_sway      # FL hip yaw in
-            pos[3]  += self.hip_sway      # FR hip yaw in
-            pos[4]  -= self.body_shift    # BL shoulder lean left
-            pos[6]  -= self.body_shift    # FL shoulder lean left
-            pos[7]  -= self.body_shift    # FR shoulder lean left
-
-        elif self.leg_to_lift == 'BL':
-            pos[1] += self.hip_sway       # BR, FR, FL lean right
-            pos[3] += self.hip_sway
-            pos[2] += self.hip_sway
-            pos[5] -= self.body_shift
-            pos[7] -= self.body_shift
-            pos[6] -= self.body_shift
-
-        elif self.leg_to_lift == 'FR':
-            pos[0] += self.hip_sway
-            pos[1] += self.hip_sway
-            pos[2] += self.hip_sway
-            pos[4] -= self.body_shift
-            pos[5] -= self.body_shift
-            pos[6] -= self.body_shift
-
-        elif self.leg_to_lift == 'FL':
-            pos[1] += self.hip_sway
-            pos[3] += self.hip_sway
-            pos[0] += self.hip_sway
-            pos[5] -= self.body_shift
-            pos[7] -= self.body_shift
-            pos[4] -= self.body_shift
-
-        # === 2. Now safely lift the chosen leg (only when body is shifted) ===
-        lift_amount_shoulder = 0.4 * lift
-        lift_amount_knee     = 0.7 * lift
-
-        if self.leg_to_lift == 'BR':
-            pos[5]  += lift_amount_shoulder   # BR upper leg up
-            pos[9]  += lift_amount_knee       # BR knee bend
-        elif self.leg_to_lift == 'BL':
-            pos[4]  += lift_amount_shoulder
-            pos[8]  += lift_amount_knee
-        elif self.leg_to_lift == 'FR':
-            pos[7]  += lift_amount_shoulder
-            pos[11] += lift_amount_knee
-        elif self.leg_to_lift == 'FL':
-            pos[6]  += lift_amount_shoulder
-            pos[10] += lift_amount_knee
-
-        # Publish
-        msg = Float64MultiArray()
-        msg.data = pos
-        self.pub.publish(msg)
-
-        if self.step % 25 == 0:
-            self.get_logger().info(f'Lifting {self.leg_to_lift} – height {lift:.2f}')
-
-        self.step += 1
-
-def main():
-    rclpy.init()
-    node = StableLegLift()
+def main(args=None):
+    rclpy.init(args=args)
+    node = SlowWalk()
     try:
         rclpy.spin(node)
     except KeyboardInterrupt:
-        node.get_logger().info("Stopped")
+        pass
     finally:
-        # Return to perfect neutral on Ctrl+C
-        msg = Float64MultiArray()
-        msg.data = [0.0]*4 + [-0.4]*4 + [0.6]*4
-        node.pub.publish(msg)
+        node.destroy_node()
         rclpy.shutdown()
 
 if __name__ == '__main__':
