@@ -11,10 +11,10 @@ class SlowWalk(Node):
         
         # --- GAIT SETTINGS ---
         self.stand_height = -0.5  # height
-        self.lift_height = 0.3   #  lift
+        self.lift_height = 0.4   #  lift
         self.stride_length = 0.3  # step
         
-        self.speed = 0.5           
+        self.speed = 0.2           
         
         # GAIT PATTERN: Crawl
         self.swing_ratio = 0.5

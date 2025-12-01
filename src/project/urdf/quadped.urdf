@@ -4,6 +4,11 @@
     <parent link="baselink_link"/>
     <child link="Camera_link"/>
   </joint>
+  <joint name="Camera_link_optical_joint" type="fixed">
+  <origin xyz="0 0 0" rpy="-1.5708 -1.5708 -1.5708"/>
+  <parent link="Camera_link"/>
+  <child link="Camera_link_optical"/>
+  </joint>
   <joint name="backplate_link_joint" type="fixed">
     <origin rpy="0.00000 0.00000 0.00000" xyz="0.05020 0.17534 0.00102"/>
     <parent link="baselink_link"/>
@@ -1436,6 +1441,7 @@
       </geometry>
     </visual>
   </link>
+  <link name="Camera_link_optical"/>
   <link name="brlowerlegmotor_link">
     <collision name="brlowerlegmotor_collision">
       <origin rpy="-0.00000 0.00000 0.00000" xyz="0.00000 -0.00000 -0.00000"/>
@@ -3113,18 +3119,20 @@
     </sensor>
   </gazebo>
 
-  <gazebo reference="Camera_link">
+  <gazebo reference="Camera_link_optical">
     <sensor name="Cam" type="camera">
     <always_on>true</always_on>
     <visualize>true</visualize>
     <update_rate>30</update_rate>
+    <frame_id>Camera_link_optical</frame_id>
+    <gz_frame_id>Camera_link_optical</gz_frame_id>
     <topic>camera/image_raw</topic>
       <camera>
+      <hfov>1.57080</hfov>
         <image>
           <format>R8G8B8</format>
           <width>640</width>
-          <height>480</height>
-          <hfov>1.57080</hfov>
+          <height>480</height>      
         </image>
         <clip>
           <near>0.05</near>
