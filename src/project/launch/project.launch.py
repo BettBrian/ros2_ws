@@ -27,8 +27,6 @@ def generate_launch_description():
     pkg_share = FindPackageShare(package_name)
     world_path = PathJoinSubstitution([pkg_share, 'world', 'empty.sdf'])
     
-    # --- CONFIGURATION CHECK ---
-    # Ensure this file exists and defines 'position_controller'
     controllers_path = PathJoinSubstitution([pkg_share, 'config', 'controllers.yaml'])
     
     use_sim_time = LaunchConfiguration('use_sim_time')
@@ -85,7 +83,7 @@ def generate_launch_description():
             '/lidar/points@sensor_msgs/msg/PointCloud2[gz.msgs.PointCloudPacked',
             '/camera/image_raw@sensor_msgs/msg/Image[gz.msgs.Image',
         ],
-        # FIXED TYPO HERE: 'use_sim_ time' -> 'use_sim_time'
+
         parameters=[{'use_sim_time': use_sim_time}],
         output='screen'
     )
@@ -107,7 +105,7 @@ def generate_launch_description():
         package='controller_manager',
         executable='spawner',
         arguments=[
-            'position_controller', # <--- THIS NAME MUST MATCH PYTHON SCRIPT
+            'position_controller',
             '--controller-manager', '/controller_manager',
             '--controller-manager-timeout', '120'
         ],

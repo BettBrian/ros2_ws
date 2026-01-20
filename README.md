@@ -25,7 +25,7 @@ colcon build --symlink-install
 source install/setup.bash
 
 # Run main lauch
-ros2 run project project.launch.py
+ros2 launch project project.launch.py
 
 # Run rtab_map
 ros2 launch project rtabmap.launch.py
