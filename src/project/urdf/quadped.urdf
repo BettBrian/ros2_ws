@@ -1,8 +1,14 @@
 <robot name="quadped" version="1.0">
   <joint name="Camera_link_joint" type="fixed">
-    <origin rpy="1.57080 -1.57080 0.00000" xyz="0.05046 -0.18221 0.00592"/>
+  <origin rpy="1.57080 -1.57080 0.00000" xyz="0.05046 -0.18221 0.00592"/>
+  <parent link="baselink_link"/>
+  <child link="Camera_link"/>
+  <dynamics damping="1.0" friction="0.1"/>
+  </joint>
+  <joint name="IMU_link_joint" type="fixed">
+    <origin rpy="0.00000 0.00000 0.00000" xyz="0.04940 0.00032 0.04152"/>
     <parent link="baselink_link"/>
-    <child link="Camera_link"/>
+    <child link="IMU_link"/>
   </joint>
   <joint name="Camera_link_optical_joint" type="fixed">
   <origin xyz="0 0 0" rpy="-1.5708 -1.5708 -1.5708"/>
@@ -36,7 +42,7 @@
   </joint>
   <joint name="frpin5_link_joint" type="revolute">
     <limit lower="-3.14000" upper="3.14000" effort="100.00000" velocity="10.00000"/>
-    <dynamics damping="1.0" friction="1.0"/>
+    <dynamics damping="1.0" friction="100.0"/>
     <origin rpy="-0.00000 1.57080 0.00000" xyz="-0.00308 0.06488 -0.07191"/>
     <parent link="frupperleg_link"/>
     <child link="frpin5_link"/>
@@ -100,7 +106,7 @@
   </joint>
   <joint name="blpart5_link_joint" type="revolute">
     <limit lower="-3.14000" upper="3.14000" effort="100.00000" velocity="10.00000"/>
-    <dynamics damping="1.0" friction="1.0"/>
+    <dynamics damping="1.0" friction="100.0"/>
     <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00761 -0.02200 0.02470"/>
     <parent link="blupperleg_link"/>
     <child link="blpart5_link"/>
@@ -109,7 +115,7 @@
   </joint>
   <joint name="blpin3_link_joint" type="revolute">
     <limit lower="-3.14000" upper="3.14000" effort="100.00000" velocity="10.00000"/>
-    <dynamics damping="1.0" friction="1.0"/>
+    <dynamics damping="1.0" friction="100.0"/>
     <origin rpy="0.00000 0.00000 0.00000" xyz="0.00408 0.02931 0.03125"/>
     <parent link="blpart5_link"/>
     <child link="blpin3_link"/>
@@ -143,7 +149,7 @@
   </joint>
   <joint name="blhipmotorplate_link_joint" type="revolute">
     <limit lower="-3.14000" upper="3.14000" effort="100.00000" velocity="10.00000"/>
-    <dynamics damping="1.0" friction="1.0"/>
+    <dynamics damping="1.0" friction="100.0"/>
     <origin rpy="1.57080 0.00000 0.00000" xyz="0.00000 0.01210 -0.00060"/>
     <parent link="blhipmotor_link"/>
     <child link="blhipmotorplate_link"/>
@@ -156,7 +162,7 @@
   </joint>
   <joint name="blpin5_link_joint" type="revolute">
     <limit lower="-3.14000" upper="3.14000" effort="100.00000" velocity="10.00000"/>
-    <dynamics damping="1.0" friction="1.0"/>
+    <dynamics damping="1.0" friction="100.0"/>
     <origin rpy="-0.00000 1.57080 0.00000" xyz="0.00591 0.06488 -0.07191"/>
     <parent link="blupperleg_link"/>
     <child link="blpin5_link"/>
@@ -200,7 +206,7 @@
   </joint>
   <joint name="brhipmotorplate_link_joint" type="revolute">
     <limit lower="-3.14000" upper="3.14000" effort="100.00000" velocity="10.00000"/>
-    <dynamics damping="1.0" friction="1.0"/>
+    <dynamics damping="1.0" friction="100.0"/>
     <origin rpy="1.57080 0.00000 0.00000" xyz="-0.00000 0.01210 -0.00060"/>
     <parent link="brhipmotor_link"/>
     <child link="brhipmotorplate_link"/>
@@ -228,7 +234,7 @@
   </joint>
   <joint name="brupperlegmotoplate_link_joint" type="revolute">
     <limit lower="-3.14000" upper="3.14000" effort="100.00000" velocity="10.00000"/>
-    <dynamics damping="1.0" friction="1.0"/>
+    <dynamics damping="1.0" friction="100.0"/>
     <origin rpy="0.00000 1.57080 0.00000" xyz="-0.01210 0.00060 -0.00000"/>
     <parent link="brupperlegmotor_link"/>
     <child link="brupperlegmotoplate_link"/>
@@ -241,7 +247,7 @@
   </joint>
   <joint name="brpart1_link_joint" type="revolute">
     <limit lower="-3.14000" upper="3.14000" effort="100.00000" velocity="10.00000"/>
-    <dynamics damping="1.0" friction="1.0"/>
+    <dynamics damping="1.0" friction="100.0"/>
     <origin rpy="0.00000 1.57080 0.00000" xyz="-0.01425 -0.00060 -0.00000"/>
     <parent link="brlowerlegmotor_link"/>
     <child link="brpart1_link"/>
@@ -249,7 +255,7 @@
   </joint>
   <joint name="brpin1_link_joint" type="revolute">
     <limit lower="-3.14000" upper="3.14000" effort="100.00000" velocity="10.00000"/>
-    <dynamics damping="1.0" friction="1.0"/>
+    <dynamics damping="1.0" friction="100.0"/>
     <origin rpy="-0.00000 -1.57080 0.00000" xyz="-0.01583 -0.03122 -0.00962"/>
     <parent link="brpart1_link"/>
     <child link="brpin1_link"/>
@@ -278,16 +284,16 @@
   </joint>
   <joint name="brpart5_link_joint" type="revolute">
     <limit lower="-3.14000" upper="3.14000" effort="100.00000" velocity="10.00000"/>
-    <dynamics damping="1.0" friction="1.0"/>
+    <dynamics damping="1.0" friction="100.0"/>
     <origin rpy="0.00000 1.57080 0.00000" xyz="0.00761 -0.02386 0.02472"/>
     <parent link="brupperleg_link"/>
     <child link="brpart5_link"/>
     <axis xyz="0.00000 0.00000 1.00000"/>
-    <mimic joint="brpart1_link_joint" multiplier="1.0" offset="0.0"/>
+    <mimic joint="brpart1_link_joint" multiplier="0.5" offset="0.0"/>
   </joint>
   <joint name="brpin3_link_joint" type="revolute">
     <limit lower="-3.14000" upper="3.14000" effort="100.00000" velocity="10.00000"/>
-    <dynamics damping="1.0" friction="1.0"/>
+    <dynamics damping="1.0" friction="100.0"/>
     <origin rpy="-0.00000 -1.57080 0.00000" xyz="-0.03124 0.03117 -0.00356"/>
     <parent link="brpart5_link"/>
     <child link="brpin3_link"/>
@@ -321,7 +327,7 @@
   </joint>
   <joint name="brpin5_link_joint" type="revolute">
     <limit lower="-3.14000" upper="3.14000" effort="100.00000" velocity="10.00000"/>
-    <dynamics damping="1.0" friction="1.0"/>
+    <dynamics damping="1.0" friction="100.0"/>
     <origin rpy="-0.00000 1.57080 -0.00000" xyz="-0.00308 0.06487 -0.07191"/>
     <parent link="brupperleg_link"/>
     <child link="brpin5_link"/>
@@ -370,7 +376,7 @@
   </joint>
   <joint name="flhipmotorplate_link_joint" type="revolute">
     <limit lower="-3.14000" upper="3.14000" effort="100.00000" velocity="10.00000"/>
-    <dynamics damping="1.0" friction="1.0"/>
+    <dynamics damping="1.0" friction="100.0"/>
     <origin rpy="-1.57080 0.00000 0.00000" xyz="-0.00000 -0.01210 -0.00060"/>
     <parent link="flhipmotor_link"/>
     <child link="flhipmotorplate_link"/>
@@ -398,7 +404,7 @@
   </joint>
   <joint name="blupperlegmotorplate_link_joint" type="revolute">
     <limit lower="-3.14000" upper="3.14000" effort="100.00000" velocity="10.00000"/>
-    <dynamics damping="1.0" friction="1.0"/>
+    <dynamics damping="1.0" friction="100.0"/>
     <origin rpy="0.00000 -1.57080 0.00000" xyz="0.01210 0.00060 -0.00000"/>
     <parent link="blupperlegmotor_link"/>
     <child link="blupperlegmotorplate_link"/>
@@ -406,7 +412,7 @@
   </joint>
   <joint name="flupperlegmotorplate_link_joint" type="revolute">
     <limit lower="-3.14000" upper="3.14000" effort="100.00000" velocity="10.00000"/>
-    <dynamics damping="1.0" friction="1.0"/>
+    <dynamics damping="1.0" friction="100.0"/>
     <origin rpy="-0.00000 -1.57080 0.00000" xyz="0.01210 0.00060 -0.00000"/>
     <parent link="flupperlegmotor_link"/>
     <child link="flupperlegmotorplate_link"/>
@@ -419,7 +425,7 @@
   </joint>
   <joint name="flpart1_link_joint" type="revolute">
     <limit lower="-3.14000" upper="3.14000" effort="100.00000" velocity="10.00000"/>
-    <dynamics damping="1.0" friction="1.0"/>
+    <dynamics damping="1.0" friction="100.0"/>
     <origin rpy="0.00000 -1.57080 0.00000" xyz="0.01425 -0.00061 0.00001"/>
     <parent link="fllowerlegmotor_link"/>
     <child link="flpart1_link"/>
@@ -427,7 +433,7 @@
   </joint>
   <joint name="flpin1_link_joint" type="revolute">
     <limit lower="-3.14000" upper="3.14000" effort="100.00000" velocity="10.00000"/>
-    <dynamics damping="1.0" friction="1.0"/>
+    <dynamics damping="1.0" friction="100.0"/>
     <origin rpy="0.00000 1.57080 0.00000" xyz="0.01581 -0.03120 -0.00987"/>
     <parent link="flpart1_link"/>
     <child link="flpin1_link"/>
@@ -456,7 +462,7 @@
   </joint>
   <joint name="flpart5_link_joint" type="revolute">
     <limit lower="-3.14000" upper="3.14000" effort="100.00000" velocity="10.00000"/>
-      <dynamics damping="1.0" friction="1.0"/>
+      <dynamics damping="1.0" friction="100.0"/>
     <origin rpy="0.00000 -1.57080 0.00000" xyz="-0.00761 -0.02214 0.02465"/>
     <parent link="flupperleg_link"/>
     <child link="flpart5_link"/>
@@ -465,7 +471,7 @@
   </joint>
   <joint name="flpin3_link_joint" type="revolute">
     <limit lower="-3.14000" upper="3.14000" effort="100.00000" velocity="10.00000"/>
-    <dynamics damping="1.0" friction="1.0"/>
+    <dynamics damping="1.0" friction="100.0"/>
     <origin rpy="0.00000 1.57080 0.00000" xyz="0.03131 0.02945 -0.00408"/>
     <parent link="flpart5_link"/>
     <child link="flpin3_link"/>
@@ -504,7 +510,7 @@
   </joint>
   <joint name="flpin5_link_joint" type="revolute">
     <limit lower="-3.14000" upper="3.14000" effort="100.00000" velocity="10.00000"/>
-    <dynamics damping="1.0" friction="1.0"/>
+    <dynamics damping="1.0" friction="100.0"/>
     <origin rpy="0.00000 1.57080 0.00000" xyz="0.00591 0.06488 -0.07191"/>
     <parent link="flupperleg_link"/>
     <child link="flpin5_link"/>
@@ -533,7 +539,7 @@
   </joint>
   <joint name="blpart1_link_joint" type="revolute">
     <limit lower="-3.14000" upper="3.14000" effort="100.00000" velocity="10.00000"/>
-    <dynamics damping="1.0" friction="1.0"/>
+    <dynamics damping="1.0" friction="100.0"/>
     <origin rpy="-0.00000 -1.57080 0.00000" xyz="0.01425 -0.00052 0.00006"/>
     <parent link="bllowerlegmotor_link"/>
     <child link="blpart1_link"/>
@@ -556,7 +562,7 @@
   </joint>
   <joint name="frhipmotorplate_link_joint" type="revolute">
     <limit lower="-3.14000" upper="3.14000" effort="100.00000" velocity="10.00000"/>
-    <dynamics damping="1.0" friction="1.0"/>
+    <dynamics damping="1.0" friction="100.0"/>
     <origin rpy="-1.57080 0.00000 0.00000" xyz="0.00000 -0.01210 -0.00060"/>
     <parent link="frhipmotor_link"/>
     <child link="frhipmotorplate_link"/>
@@ -579,7 +585,7 @@
   </joint>
   <joint name="frupperlegmotorplate_link_joint" type="revolute">
     <limit lower="-3.14000" upper="3.14000" effort="100.00000" velocity="10.00000"/>
-    <dynamics damping="1.0" friction="1.0"/>
+    <dynamics damping="1.0" friction="100.0"/>
     <origin rpy="-0.00000 1.57080 0.00000" xyz="-0.01210 0.00060 0.00000"/>
     <parent link="frupperlegmotor_link"/>
     <child link="frupperlegmotorplate_link"/>
@@ -592,7 +598,7 @@
   </joint>
   <joint name="frpart1_link_joint" type="revolute">
     <limit lower="-3.14000" upper="3.14000" effort="100.00000" velocity="10.00000"/>
-    <dynamics damping="1.0" friction="1.0"/>
+    <dynamics damping="1.0" friction="100.0"/>
     <origin rpy="0.00000 1.57080 0.00000" xyz="-0.01425 -0.00052 -0.00003"/>
     <parent link="frlowerlegmotor_link"/>
     <child link="frpart1_link"/>
@@ -600,7 +606,7 @@
   </joint>
   <joint name="blpin1_link_joint" type="revolute">
     <limit lower="-3.14000" upper="3.14000" effort="100.00000" velocity="10.00000"/>
-    <dynamics damping="1.0" friction="1.0"/>
+    <dynamics damping="1.0" friction="100.0"/>
     <origin rpy="0.00000 1.57080 0.00000" xyz="0.01577 -0.03130 -0.00962"/>
     <parent link="blpart1_link"/>
     <child link="blpin1_link"/>
@@ -609,7 +615,7 @@
   </joint>
   <joint name="frpin1_link_joint" type="revolute">
     <limit lower="-3.14000" upper="3.14000" effort="100.00000" velocity="10.00000"/>
-    <dynamics damping="1.0" friction="1.0"/>
+    <dynamics damping="1.0" friction="100.0"/>
     <origin rpy="-0.00000 -1.57080 0.00000" xyz="-0.01586 -0.03129 -0.00987"/>
     <parent link="frpart1_link"/>
     <child link="frpin1_link"/>
@@ -638,7 +644,7 @@
   </joint>
   <joint name="frpart5_link_joint" type="revolute">
     <limit lower="-3.14000" upper="3.14000" effort="100.00000" velocity="10.00000"/>
-    <dynamics damping="1.0" friction="1.0"/>
+    <dynamics damping="1.0" friction="100.0"/>
     <origin rpy="-0.00000 1.57080 0.00000" xyz="0.00761 -0.02386 0.02464"/>
     <parent link="frupperleg_link"/>
     <child link="frpart5_link"/>
@@ -647,7 +653,7 @@
   </joint>
   <joint name="frpin3_link_joint" type="revolute">
     <limit lower="-3.14000" upper="3.14000" effort="100.00000" velocity="10.00000"/>
-    <dynamics damping="1.0" friction="1.0"/>
+    <dynamics damping="1.0" friction="100.0"/>
     <origin rpy="-0.00000 -1.57080 0.00000" xyz="-0.03132 0.03118 -0.00350"/>
     <parent link="frpart5_link"/>
     <child link="frpin3_link"/>
@@ -831,7 +837,7 @@
   </link>
   <link name="frcap_link">
     <collision name="frcap_collision">
-      <origin rpy="-0.26180 0.00000 0.00000" xyz="-0.00000 -0.00000 0.00000"/>
+      <origin rpy="-0.08727 0.00000 0.00000" xyz="-0.00000 -0.00000 0.00000"/>
       <geometry>
         <mesh filename="file://$(find project)/meshes/stl/RobotDog3.062.stl" scale="0.00100 0.00100 0.00100"/>
       </geometry>
@@ -870,6 +876,7 @@
       </geometry>
     </visual>
   </link>
+  <link name="IMU_link"/>
   <link name="frpin6.2_link">
     <collision name="frpin6.2_collision">
       <origin rpy="0.00000 0.00000 -0.00000" xyz="-0.00000 0.00000 -0.00000"/>
@@ -3093,13 +3100,13 @@
       <lidar>
         <scan>
           <horizontal>
-            <samples>1080</samples>
+            <samples>2160</samples>
             <resolution>1</resolution>
             <min_angle>-3.14159</min_angle>
             <max_angle>3.14159</max_angle>
           </horizontal>
           <vertical>
-            <samples>64</samples>       
+            <samples>128</samples>       
             <resolution>1</resolution>
             <min_angle>-0.2618</min_angle>
             <max_angle>0.2618</max_angle>
@@ -3131,14 +3138,63 @@
       <hfov>1.57080</hfov>
         <image>
           <format>R8G8B8</format>
-          <width>640</width>
-          <height>480</height>      
+          <width>1920</width>
+          <height>1080</height>      
         </image>
         <clip>
           <near>0.05</near>
-          <far>8.0</far>
+          <far>50.0</far>
         </clip>
       </camera>
+    </sensor>
+  </gazebo>
+    <gazebo reference="IMU_link">
+    <sensor name="imu_sensor" type="imu">
+      <always_on>true</always_on>
+      <update_rate>100</update_rate>
+      <topic>imu</topic>
+      <imu>
+        <angular_velocity>
+          <x>
+            <noise type="gaussian">
+              <mean>0.0</mean>
+              <stddev>2e-4</stddev>
+            </noise>
+          </x>
+          <y>
+            <noise type="gaussian">
+              <mean>0.0</mean>
+              <stddev>2e-4</stddev>
+            </noise>
+          </y>
+          <z>
+            <noise type="gaussian">
+              <mean>0.0</mean>
+              <stddev>2e-4</stddev>
+            </noise>
+          </z>
+        </angular_velocity>
+        <linear_acceleration>
+          <x>
+            <noise type="gaussian">
+              <mean>0.0</mean>
+              <stddev>1.7e-2</stddev>
+            </noise>
+          </x>
+          <y>
+            <noise type="gaussian">
+              <mean>0.0</mean>
+              <stddev>1.7e-2</stddev>
+            </noise>
+          </y>
+          <z>
+            <noise type="gaussian">
+              <mean>0.0</mean>
+              <stddev>1.7e-2</stddev>
+            </noise>
+          </z>
+        </linear_acceleration>
+      </imu>
     </sensor>
   </gazebo>
 </robot>

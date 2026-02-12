@@ -25,9 +25,11 @@ def generate_launch_description():
     )
     
     pkg_share = FindPackageShare(package_name)
+
+    rviz_config_path = PathJoinSubstitution([pkg_share, 'config', 'rviz2.rviz'])
     world_path = PathJoinSubstitution([pkg_share, 'world', 'empty.sdf'])
     
-    controllers_path = PathJoinSubstitution([pkg_share, 'config', 'controllers.yaml'])
+
     
     use_sim_time = LaunchConfiguration('use_sim_time')
     
@@ -82,6 +84,7 @@ def generate_launch_description():
             '/odometry@nav_msgs/msg/Odometry@gz.msgs.Odometry',
             '/lidar/points@sensor_msgs/msg/PointCloud2[gz.msgs.PointCloudPacked',
             '/camera/image_raw@sensor_msgs/msg/Image[gz.msgs.Image',
+            '/imu@sensor_msgs/msg/Imu@gz.msgs.IMU'
         ],
 
         parameters=[{'use_sim_time': use_sim_time}],
@@ -112,6 +115,16 @@ def generate_launch_description():
         output='screen'
     )
 
+    #RViz Node
+    rviz_node = Node(
+        package='rviz2',
+        executable='rviz2',
+        name='rviz2',
+        output='screen',
+        arguments=['-d', rviz_config_path],
+        parameters=[{'use_sim_time': use_sim_time}]
+    )
+
     
     # Delay spawners
     delayed_joint_state_broadcaster = TimerAction(
@@ -126,6 +139,13 @@ def generate_launch_description():
         )
     )
 
+    delayed_rviz = RegisterEventHandler(
+        event_handler=OnProcessExit(
+            target_action=position_controller_spawner,
+            on_exit=[rviz_node],
+        )
+    )
+
     
     return LaunchDescription([
         gz_resource_path,
@@ -136,4 +156,5 @@ def generate_launch_description():
         gz_bridge,
         delayed_joint_state_broadcaster,
         delayed_position_controller,
+        delayed_rviz
     ])
